@@ -1,0 +1,461 @@
+/* ==========================================================================
+   Tekno Krraft 2026 - Interactive & 3D Polish Additions
+   Holographic Pass, 3D Sphere Canvas, CLI Shell, Map Inspector, Spotlight
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. 3D HERO SPHERE CANVAS
+   -------------------------------------------------------------------------- */
+.hero-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+}
+
+#uiSphereHeroCanvas {
+  display: block;
+  cursor: grab;
+}
+
+#uiSphereHeroCanvas:active {
+  cursor: grabbing;
+}
+
+.canvas-floating-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  background: rgba(11, 14, 20, 0.85);
+  border: 1px solid var(--border-hairline);
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. HOLOGRAPHIC 3D PASS STYLES
+   -------------------------------------------------------------------------- */
+.badge-generator-container {
+  perspective: 1000px;
+}
+
+.digital-pass-card {
+  transition: transform 0.15s ease-out, box-shadow 0.2s ease;
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Holographic Iridescent Glare Sheen */
+.digital-pass-card::after {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  background: linear-gradient(
+    var(--glare-angle, 115deg),
+    transparent 20%,
+    rgba(59, 130, 246, 0.25) 40%,
+    rgba(239, 68, 68, 0.25) 50%,
+    rgba(245, 158, 11, 0.25) 60%,
+    rgba(16, 185, 129, 0.25) 70%,
+    transparent 80%
+  );
+  opacity: var(--glare-opacity, 0);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: overlay;
+  z-index: 10;
+}
+
+/* Realistic Lanyard Clip */
+.pass-lanyard-strap {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 24px;
+  background: linear-gradient(to bottom, #1e2538, #2a344d);
+  border: 1px solid #3b4766;
+  border-radius: 4px 4px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.pass-lanyard-hole {
+  width: 14px;
+  height: 6px;
+  background-color: var(--bg-surface);
+  border: 1px solid #1f273b;
+  border-radius: 3px;
+}
+
+/* Pass Flip State */
+.pass-face-front,
+.pass-face-back {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  backface-visibility: hidden;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pass-face-back {
+  position: absolute;
+  inset: 20px;
+  transform: rotateY(180deg);
+  background: var(--bg-primary);
+  display: flex;
+  justify-content: space-between;
+}
+
+.digital-pass-card.flipped .pass-face-front {
+  transform: rotateY(180deg);
+}
+
+.digital-pass-card.flipped .pass-face-back {
+  transform: rotateY(0deg);
+}
+
+/* --------------------------------------------------------------------------
+   3. CARD SPOTLIGHT HOVER (Cursor Radial Glow)
+   -------------------------------------------------------------------------- */
+.session-card,
+.feature-box,
+.speaker-card,
+.prize-card,
+.track-workbench,
+.venue-guide-box {
+  background-image: radial-gradient(
+    380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(59, 130, 246, 0.08),
+    transparent 50%
+  );
+  position: relative;
+}
+
+[data-theme="light"] .session-card,
+[data-theme="light"] .feature-box,
+[data-theme="light"] .speaker-card,
+[data-theme="light"] .prize-card {
+  background-image: radial-gradient(
+    380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(59, 130, 246, 0.05),
+    transparent 50%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   4. HACK SPRINT PRIZE CALCULATOR
+   -------------------------------------------------------------------------- */
+.prize-calculator-box {
+  margin-top: var(--space-lg);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 960px) {
+  .prize-calculator-box {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 32px;
+  }
+}
+
+.calc-sliders-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.calc-slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calc-slider-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.calc-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-hairline);
+  border-radius: 3px;
+  outline: none;
+}
+
+.calc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  cursor: pointer;
+  border: 2px solid #ffffff;
+}
+
+.calc-summary-col {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.calc-score-number {
+  font-family: var(--font-mono);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--accent-blue);
+  line-height: 1;
+}
+
+.calc-bounty-number {
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent-yellow);
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   5. INTERACTIVE CAMPUS BLUEPRINT INSPECTOR
+   -------------------------------------------------------------------------- */
+.campus-map-navigator {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .campus-map-navigator {
+    grid-template-columns: 240px 1fr;
+  }
+}
+
+.map-zones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.map-zone-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.map-zone-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.map-zone-btn.active {
+  background: var(--bg-elevated);
+  border-left: 3px solid var(--accent-green);
+  color: var(--text-primary);
+}
+
+.map-zone-btn-title {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.map-zone-btn-sub {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.map-inspector-pane {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   6. FLOATING DEVELOPER CLI TERMINAL (TK-SHELL)
+   -------------------------------------------------------------------------- */
+.cli-floating-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cli-floating-trigger:hover {
+  border-color: var(--accent-green);
+  transform: translateY(-2px);
+}
+
+.cli-terminal-drawer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 90vw;
+  max-width: 520px;
+  height: 380px;
+  background-color: #0b0e14;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: all var(--transition-normal);
+  font-family: var(--font-mono);
+}
+
+.cli-terminal-drawer.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.cli-header {
+  padding: 10px 14px;
+  background-color: #111520;
+  border-bottom: 1px solid var(--border-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cli-header-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-green);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cli-chips-row {
+  display: flex;
+  gap: 4px;
+  padding: 6px 14px;
+  background-color: #0e121a;
+  border-bottom: 1px solid var(--border-hairline);
+  overflow-x: auto;
+}
+
+.cli-chip {
+  padding: 2px 6px;
+  font-size: 0.65rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: 2px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cli-chip:hover {
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
+}
+
+.cli-output {
+  flex: 1;
+  padding: 12px 14px;
+  overflow-y: auto;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cli-line {
+  word-break: break-all;
+}
+
+.cli-prompt { color: var(--accent-blue); }
+.cli-info { color: #f4f6fa; font-weight: 600; }
+.cli-success { color: var(--accent-green); }
+.cli-error { color: var(--accent-red); }
+.cli-normal { color: var(--text-secondary); }
+
+.cli-input-bar {
+  display: flex;
+  align-items: center;
+  padding: 8px 14px;
+  background-color: #111520;
+  border-top: 1px solid var(--border-hairline);
+  gap: 8px;
+}
+
+.cli-input-prefix {
+  color: var(--accent-green);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.cli-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}

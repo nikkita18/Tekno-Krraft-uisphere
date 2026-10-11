@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tekno Krraft 2026 | GDG @ SOA, ITER Chapter</title>
+  <meta name="description" content="A 3-Day Celebration of Code, Cloud, AI & Innovation organized by Google Developer Group (GDG) SOA, ITER Chapter. October 16-18, 2026, Bhubaneswar." />
+  <meta name="keywords" content="Tekno Krraft 2026, GDG ITER, GDG SOA, Google Developer Groups, Hackathon, Gemini, Flutter, Cloud Run, GKE, UI Sphere" />
+  <meta name="theme-color" content="#0b0e14" />
+
+  <!-- Google Fonts: Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+  <link rel="stylesheet" href="styles/radiant-gdg.css" />
+  <link rel="stylesheet" href="styles/interactive-suite.css" />
+  <link rel="stylesheet" href="styles/clean-theme.css" />
+</head>
+<body>
+
+  <!-- Ambient GDG Lighting Mesh -->
+  <div class="gdg-ambient-glow glow-blue"></div>
+  <div class="gdg-ambient-glow glow-red"></div>
+  <div class="gdg-ambient-glow glow-yellow"></div>
+  <div class="gdg-ambient-glow glow-green"></div>
+
+  <!-- =========================================================================
+       1. NAVIGATION HEADER (Google Developer Group Identity)
+       ========================================================================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <a href="#hero" class="brand-wrapper" aria-label="Tekno Krraft 2026 Home">
+        <div class="brand-symbol">
+          <span class="brand-symbol-bracket">&lt;</span>
+          <span class="brand-symbol-g1" style="color:#4285f4;">G</span>
+          <span class="brand-symbol-d" style="color:#ea4335;">D</span>
+          <span class="brand-symbol-g2" style="color:#34a853;">G</span>
+          <span class="brand-symbol-bracket">&gt;</span>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Tekno Krraft <span style="color:#4285f4;">2026</span></div>
+          <div class="brand-sub">GDG @ SOA, ITER CHAPTER</div>
+        </div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="#oracle" class="nav-link">Ask Gemini</a>
+        <a href="#pass" class="nav-link">Delegate Pass</a>
+        <a href="#tracks" class="nav-link">Tracks</a>
+        <a href="#schedule" class="nav-link">Schedule</a>
+        <a href="#speakers" class="nav-link">Speakers</a>
+        <a href="#hackathon" class="nav-link">Hack Sprint</a>
+        <a href="#venue" class="nav-link">Venue</a>
+        <a href="#faqs" class="nav-link">FAQs</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Tactile Sound Synthesizer Toggle -->
+        <button id="soundToggleBtn" class="btn-icon" aria-label="Toggle Sound Effects" title="Tactile Sound Feedback">
+          <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24" style="color:var(--text-muted);">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <line x1="23" y1="9" x2="17" y2="15"/>
+            <line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+        </button>
+
+        <!-- My Schedule Drawer Trigger -->
+        <button class="btn btn-outline btn-sm itinerary-toggle-btn" title="View Saved Itinerary">
+          <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          <span>My Plan</span>
+          <span class="itinerary-btn-badge" style="display:none;">0</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggleBtn" class="btn-icon" aria-label="Toggle visual theme" title="Toggle theme">
+          <svg class="svg-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+
+        <!-- Register CTA -->
+        <button class="btn btn-primary btn-sm open-reg-modal-btn">
+          Register Now
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="btn-icon mobile-menu-btn" aria-label="Open mobile menu" aria-expanded="false">
+          <svg class="svg-icon" viewBox="0 0 24 24">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div id="mobileNavDrawer" class="mobile-nav-drawer" aria-hidden="true">
+    <a href="#oracle" class="mobile-nav-link">01 // Ask Gemini AI</a>
+    <a href="#pass" class="mobile-nav-link">02 // Delegate Pass</a>
+    <a href="#tracks" class="mobile-nav-link">03 // Tracks & Workshops</a>
+    <a href="#schedule" class="mobile-nav-link">04 // 3-Day Schedule</a>
+    <a href="#speakers" class="mobile-nav-link">05 // Speakers & Mentors</a>
+    <a href="#hackathon" class="mobile-nav-link">06 // ₹2.5L Hack Sprint</a>
+    <a href="#venue" class="mobile-nav-link">07 // Campus & Venue</a>
+    <a href="#faqs" class="mobile-nav-link">08 // FAQs</a>
+    <div style="margin-top:auto;display:flex;flex-direction:column;gap:10px;">
+      <button class="btn btn-outline itinerary-toggle-btn">Open My Itinerary Planner</button>
+      <button class="btn btn-primary open-reg-modal-btn">Register for Fest</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- =========================================================================
+         2. HERO SECTION (Grand Flagship Dual Stage // 3D UI Sphere + Creative Deck)
+         ========================================================================= -->
+    <section class="hero-clean-section" id="hero">
+      <div class="container">
+        <div class="hero-master-grid">
+          <!-- Left Column: Editorial & Event Command Deck -->
+          <div class="hero-editorial-deck">
+            <!-- Google Brand Pill -->
+            <div class="hero-pill-badge">
+              <div class="hero-pill-dots">
+                <span style="background:#4285f4;"></span>
+                <span style="background:#ea4335;"></span>
+                <span style="background:#fbbc04;"></span>
+                <span style="background:#34a853;"></span>
+              </div>
+              <span>GDG @ SOA, ITER CHAPTER</span>
+              <span class="pill-divider">•</span>
+              <span class="pill-date">OCTOBER 16 – 18, 2026</span>
+            </div>
+
+            <!-- Master Charismatic Headline -->
+            <h1 class="hero-title-giant">
+              <span class="hero-title-tekno">Tekno</span>
+              <span class="hero-title-krraft">Krraft</span>
+              <span class="hero-year-badge">2026</span>
+            </h1>
+
+            <p class="hero-subtitle-clean">
+              A 3-Day Celebration of Code, Cloud, AI & Innovation.<br />
+              Where 1,500+ builders converge to pioneer real-world software systems at Siksha 'O' Anusandhan, Bhubaneswar.
+            </p>
+
+            <!-- 4-Digit Google Colored Tactile Glass Countdown -->
+            <div class="countdown-wrapper-clean">
+              <div class="countdown-status-indicator">
+                <span class="live-pulse-dot"></span>
+                <span>LAUNCH COUNTDOWN // 16 OCT 2026</span>
+              </div>
+              <div class="hero-countdown-strip">
+                <div class="countdown-box-clean">
+                  <span id="cdDays" class="countdown-val-clean val-blue">04</span>
+                  <span class="countdown-lbl-clean">DAYS</span>
+                </div>
+                <div class="countdown-box-clean">
+                  <span id="cdHours" class="countdown-val-clean val-red">12</span>
+                  <span class="countdown-lbl-clean">HOURS</span>
+                </div>
+                <div class="countdown-box-clean">
+                  <span id="cdMins" class="countdown-val-clean val-yellow">39</span>
+                  <span class="countdown-lbl-clean">MINUTES</span>
+                </div>
+                <div class="countdown-box-clean">
+                  <span id="cdSecs" class="countdown-val-clean val-green">18</span>
+                  <span class="countdown-lbl-clean">SECONDS</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- High-Impact Action CTAs -->
+            <div class="hero-actions-clean">
+              <button class="btn btn-primary open-reg-modal-btn">
+                <span>Register for Events</span>
+                <span class="btn-sparkle">✨</span>
+              </button>
+              <a href="#oracle" class="btn btn-secondary">
+                <span>Ask Gemini AI</span>
+                <span style="color:#4285f4;">✦</span>
+              </a>
+              <a href="#schedule" class="btn btn-outline">
+                <span>Explore Schedule</span>
+                <span>↓</span>
+              </a>
+            </div>
+
+            <!-- Quick Telemetry Row -->
+            <div class="hero-quick-metrics">
+              <span class="hero-metric-item">
+                <span style="color:#4285f4;">●</span> <strong>1,500+</strong> Attendees
+              </span>
+              <span class="hero-metric-item">
+                <span style="color:#ea4335;">●</span> <strong>30+</strong> Masterclasses
+              </span>
+              <span class="hero-metric-item">
+                <span style="color:#fbbc04;">●</span> <strong>₹2,50,000+</strong> Prize Pool
+              </span>
+              <span class="hero-metric-item">
+                <span style="color:#34a853;">●</span> <strong>24h</strong> Hack Sprint
+              </span>
+            </div>
+          </div>
+
+          <!-- Right Column: The 3D UI Sphere Floating Showcase -->
+          <div class="hero-sphere-showcase-deck">
+            <!-- 3D Interactive Canvas Stage -->
+            <div class="sphere-canvas-viewport" id="sphereCanvasWrap" title="Click and drag to spin 3D particle sphere">
+              <canvas id="uiSphereHeroCanvas"></canvas>
+
+              <!-- Floating Telemetry Chips -->
+              <div class="sphere-floating-chip chip-bounty">
+                <span class="chip-icon">🏆</span>
+                <span>₹2,50,000+ BOUNTIES</span>
+              </div>
+              <div class="sphere-floating-chip chip-tracks">
+                <span class="chip-icon">💡</span>
+                <span>4 CORE TRACKS</span>
+              </div>
+              <div class="sphere-floating-chip chip-sprint">
+                <span class="chip-icon">🚀</span>
+                <span>24h HACK SPRINT</span>
+              </div>
+
+              <!-- Interactive Controls Overlay -->
+              <div class="sphere-control-bar">
+                <button type="button" class="sphere-mode-btn active" data-mode="fibonacci">✦ Fibonacci</button>
+                <button type="button" class="sphere-mode-btn" data-mode="constellation">🌐 Constellation</button>
+                <button type="button" class="sphere-mode-btn" data-mode="quantum">⚛️ Quantum</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         3. METRICS ARCHITECTURE STRIP (Google Color Accents)
+         ========================================================================= -->
+    <div class="metrics-strip">
+      <div class="metric-cell">
+        <span class="metric-num" style="color:#4285f4;">1,500+</span>
+        <span class="metric-lbl">Attendees Expected</span>
+      </div>
+      <div class="metric-cell">
+        <span class="metric-num" style="color:#ea4335;">30+</span>
+        <span class="metric-lbl">Technical Sessions</span>
+      </div>
+      <div class="metric-cell">
+        <span class="metric-num" style="color:#fbbc04;">₹2,50,000+</span>
+        <span class="metric-lbl">Prize Pool</span>
+      </div>
+      <div class="metric-cell">
+        <span class="metric-num" style="color:#34a853;">24 Hours</span>
+        <span class="metric-lbl">Hack Sprint Hours</span>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         4. DEDICATED RADIANT GEMINI CONCIERGE (Spacious, Uncluttered, Kinetic)
+         ========================================================================= -->
+    <section class="radiant-dedicated-section" id="oracle">
+      <div class="container radiant-clean-wrap">
+        <div class="section-meta-tag">&lt; AI-POWERED FESTIVAL CONCIERGE /&gt;</div>
+        <h2 class="section-title" style="text-align:center;">Ask Gemini Anything About Tekno Krraft</h2>
+        <p class="section-subtitle" style="text-align:center; max-width:640px; margin: 0 auto 16px auto;">
+          Real-time intelligent answers synthesized directly from the GDG ITER festival corpus. Inquire about track prerequisites, hackathon bounties, or speaker schedules.
+        </p>
+
+        <!-- The Radiant Prompt Input -->
+        <div class="radiant-prompt-container" style="max-width:760px; margin: 0 auto; width:100%;">
+          <div class="radiant-input-wrapper">
+            <div class="radiant-input-border"></div>
+            <div class="radiant-inner-row">
+              <button type="button" class="radiant-btn-action" id="radiantPlusBtn" title="Cycle sample questions" aria-label="Cycle questions">
+                <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+
+              <input
+                type="text"
+                id="radiantQueryInput"
+                class="radiant-text-input"
+                placeholder="Ask Gemini about tracks, schedule, prizes, speakers..."
+              />
+
+              <button type="button" class="radiant-btn-action" id="radiantMicBtn" title="Query hackathon details" aria-label="Use voice">
+                <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+              </button>
+
+              <button type="button" class="radiant-btn-submit" id="radiantSubmitBtn" aria-label="Submit query">
+                <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Query Chips (Clean & centered, no scrollbars) -->
+          <div class="radiant-chips-bar" style="margin-top:16px;">
+            <span class="radiant-chip" data-query="What are the AI track prerequisites?">AI Track Prerequisites</span>
+            <span class="radiant-chip" data-query="How is the ₹2,50,000 prize pool distributed?">₹2.5L Prize Breakdown</span>
+            <span class="radiant-chip" data-query="When does the 24-hour hack sprint start?">Hack Sprint Timing</span>
+            <span class="radiant-chip" data-query="Tell me about Dr. Ananya Patnaik's keynote">Dr. Ananya Patnaik Keynote</span>
+          </div>
+
+          <!-- Live Response Speech Card -->
+          <div class="radiant-response-card" id="radiantResponseCard">
+            <div class="radiant-response-header">
+              <span>GEMINI AI FESTIVAL CONCIERGE</span>
+              <span id="radiantStatusTag" style="font-size:0.65rem;color:var(--accent-green);">SYNTHESIZED FROM GDG CORPUS</span>
+            </div>
+            <div class="radiant-response-text" id="radiantResponseText"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. DEDICATED DIGITAL DELEGATE PASS (Spacious 2-Column Showcase)
+         ========================================================================= -->
+    <section class="pass-showcase-section" id="pass">
+      <div class="container">
+        <div class="pass-showcase-grid">
+          <!-- Left: Editorial & Perks -->
+          <div class="pass-editorial">
+            <div class="section-meta-tag">&lt; 3D HOLOGRAPHIC CREDENTIAL /&gt;</div>
+            <h2 class="section-title">Claim Your Official Digital Delegate Pass</h2>
+            <p class="section-subtitle">
+              Your personalized, cryptographically signed access credential for Tekno Krraft 2026. Includes your verified seat allocation, lab reservation, and secure campus Wi-Fi authentication token.
+            </p>
+
+            <div class="pass-features-list">
+              <div class="pass-feat-item">
+                <div class="feat-bullet" style="background:#4285f4;"></div>
+                <div>
+                  <strong>Verified Lab Seat Allocation</strong>
+                  <p>Guaranteed physical workstation reservation across Lab 302, 303 & Mini Audi.</p>
+                </div>
+              </div>
+              <div class="pass-feat-item">
+                <div class="feat-bullet" style="background:#ea4335;"></div>
+                <div>
+                  <strong>SHA-256 Gate Access Token</strong>
+                  <p>Cryptographically verifiable security barcode for swift check-in at Siksha 'O' Anusandhan.</p>
+                </div>
+              </div>
+              <div class="pass-feat-item">
+                <div class="feat-bullet" style="background:#34a853;"></div>
+                <div>
+                  <strong>3D Holographic Tilt & Vector Export</strong>
+                  <p>Interact with real-time gyroscopic sheen, flip to reveal Wi-Fi keys, or download high-res SVG.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: The 3D Card & Customizer -->
+          <div class="badge-generator-container">
+            <div class="badge-tool-header">
+              <span class="badge-tool-title">Interactive Delegate Pass</span>
+              <div style="display:flex;gap:6px;">
+                <span class="tag tag-green">3D HOLOGRAPHIC</span>
+                <button id="flipPassBtn" class="btn btn-outline btn-sm" style="padding:4px 10px;font-size:0.7rem;">
+                  Flip Pass ↻
+                </button>
+              </div>
+            </div>
+
+            <!-- Pass Card -->
+            <div class="digital-pass-card" id="digitalPassCard">
+              <div class="pass-lanyard-strap">
+                <div class="pass-lanyard-hole"></div>
+              </div>
+              <div class="pass-notch-top"></div>
+
+              <!-- Front Face -->
+              <div class="pass-face-front">
+                <div class="pass-card-header">
+                  <div class="pass-org-info">
+                    <span class="pass-org-name">GDG @ SOA, ITER CHAPTER</span>
+                    <div class="pass-event-name">Tekno Krraft <span style="color:#4285f4;">2026</span></div>
+                  </div>
+                  <span id="passRoleDisplay" class="pass-role-badge">DELEGATE</span>
+                </div>
+
+                <div class="pass-user-section">
+                  <div id="passAvatarInitials" class="pass-avatar" style="color:#4285f4;">AS</div>
+                  <div class="pass-identity">
+                    <span id="passNameDisplay" class="pass-name-display">Aditya Sharma</span>
+                    <span id="passTrackDisplay" class="pass-track-display">Generative AI & Machine Learning</span>
+                  </div>
+                </div>
+
+                <div class="pass-meta-row">
+                  <div class="pass-meta-col">
+                    <span>DATES</span>
+                    <span>OCT 16 - 18</span>
+                  </div>
+                  <div class="pass-meta-col">
+                    <span>SEAT / LAB</span>
+                    <span id="passSeatDisplay">LAB-302 / D-12</span>
+                  </div>
+                  <div class="pass-meta-col">
+                    <span>PASS CODE</span>
+                    <span id="passIdDisplay" style="color:#4285f4;">TK26-4821</span>
+                  </div>
+                </div>
+
+                <div class="pass-barcode-area">
+                  <div class="barcode-lines" id="passBarcodeLines"></div>
+                  <div class="pass-qr-sim" title="Cryptographically verifiable ticket hash">
+                    <div class="qr-dot"></div>
+                    <div class="qr-dot" style="background:#4285f4;"></div>
+                    <div class="qr-dot"></div>
+                    <div class="qr-dot"></div>
+                    <div class="qr-dot" style="background:#34a853;"></div>
+                    <div class="qr-dot"></div>
+                    <div class="qr-dot" style="background:#fbbc04;"></div>
+                    <div class="qr-dot"></div>
+                    <div class="qr-dot"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Back Face -->
+              <div class="pass-face-back">
+                <div>
+                  <span class="meta-label">DELEGATE CREDENTIAL VERIFICATION</span>
+                  <div style="font-size:0.85rem;color:var(--text-primary);font-weight:700;margin-top:4px;">
+                    Siksha 'O' Anusandhan Security Gate Pass
+                  </div>
+                  <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);margin-top:2px;">
+                    AUTH TOKEN: SHA256-TK26-SOA-9812A
+                  </div>
+                </div>
+
+                <div style="background:var(--bg-surface);border:1px solid var(--border-hairline);padding:10px;border-radius:var(--radius-xs);display:flex;flex-direction:column;gap:4px;">
+                  <span class="meta-label">CAMPUS WI-FI CREDENTIALS</span>
+                  <span style="font-family:var(--font-mono);font-size:0.75rem;color:#34a853;">SSID: ITER_GDG_GUEST</span>
+                  <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-secondary);">KEY: tekno2026!iter</span>
+                </div>
+
+                <div>
+                  <span class="meta-label">EMERGENCY & HELPDESK</span>
+                  <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);">
+                    Operations Desk: Main Quad Foyer • Help: +91 674 2350588
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="badge-controls" style="margin-top:16px;">
+              <div class="badge-input-row">
+                <div>
+                  <label class="meta-label" for="badgeNameInput">Your Name</label>
+                  <input type="text" id="badgeNameInput" class="badge-input" value="Aditya Sharma" placeholder="Enter attendee name" />
+                </div>
+                <div>
+                  <label class="meta-label" for="badgeRoleSelect">Role Tier</label>
+                  <select id="badgeRoleSelect" class="badge-input">
+                    <option value="Delegate">Delegate</option>
+                    <option value="Hacker">Hackathon Builder</option>
+                    <option value="Researcher">AI Researcher</option>
+                    <option value="Mentor">Student Mentor</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="meta-label" for="badgeTrackSelect">Focus Specialization</label>
+                <select id="badgeTrackSelect" class="badge-input">
+                  <option value="Generative AI & Machine Learning">Generative AI & Machine Learning</option>
+                  <option value="Full-Stack Web & Cloud Architecture">Full-Stack Web & Cloud Architecture</option>
+                  <option value="Mobile & Cross-Platform Systems">Mobile & Cross-Platform Systems</option>
+                  <option value="Cloud Infrastructure & Kubernetes">Cloud Infrastructure & Kubernetes</option>
+                </select>
+              </div>
+
+              <div class="badge-actions-row">
+                <button id="downloadBadgeBtn" class="btn btn-secondary btn-sm" style="flex:1;">
+                  <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Download SVG Pass
+                </button>
+                <button id="shareBadgeBtn" class="btn btn-outline btn-sm" style="flex:1;">
+                  <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                  Share Pass
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. WHY JOIN SECTION (Developer Fest Overview)
+         ========================================================================= -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-meta-tag">&lt; DEVELOPER FEST OVERVIEW /&gt;</div>
+          <h2 class="section-title">Why Join Tekno Krraft 2026?</h2>
+          <p class="section-desc">
+            Organized by GDG @ SOA, ITER Chapter, Tekno Krraft brings together visionaries, students, industry mentors, and open-source leaders for three intensive days of tech discovery.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <div class="feature-index">PILLAR 01 // HANDS-ON</div>
+            <h3 class="feature-title">Hands-On Technical Bootcamps</h3>
+            <p class="feature-text">
+              Build real-world projects alongside Google experts and certified mentors in high-performance computer laboratories. Walk away with deployed production apps rather than static slides.
+            </p>
+            <div class="feature-footer">
+              <span>Vertex AI & Google Cloud Run Labs</span>
+              <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-index">PILLAR 02 // SPRINT</div>
+            <h3 class="feature-title">24-Hour AI/ML Hack Sprint</h3>
+            <p class="feature-text">
+              Collaborate in teams of 2 to 4 to prototype solutions addressing pressing challenges in health, governance, climate, and autonomous software with continuous mentor access.
+            </p>
+            <div class="feature-footer">
+              <span>₹2.5L Prize Pool & Sponsor Bounties</span>
+              <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-index">PILLAR 03 // ECOSYSTEM</div>
+            <h3 class="feature-title">Recognitions & Networking</h3>
+            <p class="feature-text">
+              Connect with leading technology hiring partners, win prizes, and earn industry credentials. Build lasting relationships with peers across 45+ premier institutions nationwide.
+            </p>
+            <div class="feature-footer">
+              <span>Official GDG Credentials & Swag Kits</span>
+              <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. WORKSHOPS & SPECIALIZATION TRACKS (Interactive Workbench)
+         ========================================================================= -->
+    <section class="section" id="tracks">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-meta-tag">&lt; CORE TECHNICAL TRACKS /&gt;</div>
+          <h2 class="section-title">Workshops & Specialization Tracks</h2>
+          <p class="section-desc">
+            Master high-demand Google Cloud, AI, Web, and Mobile skills through curated curriculum and expert-guided labs.
+          </p>
+        </div>
+
+        <div class="track-workbench">
+          <div class="track-nav-list" id="trackNavList"></div>
+          <div class="track-detail-panel" id="trackDetailPanel"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. 3-DAY INTERACTIVE EVENT SCHEDULE
+         ========================================================================= -->
+    <section class="section" id="schedule">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-meta-tag">&lt; 3-DAY INTERACTIVE EVENT SCHEDULE /&gt;</div>
+          <h2 class="section-title">Plan Your Fest Journey</h2>
+          <p class="section-desc">
+            Explore keynotes, hands-on workshops, competitive coding, and the 24-hour hack sprint. Bookmark sessions to curate your personal itinerary and export to your calendar.
+          </p>
+        </div>
+
+        <!-- Schedule Controller: Day Tabs, Category Filter & Search -->
+        <div class="schedule-control-bar">
+          <div class="day-selector-group">
+            <button class="day-tab-btn active" data-day="1">
+              <span class="day-tab-name">Day 01</span>
+              <span class="day-tab-date">Fri, Oct 16</span>
+              <span class="day-tab-theme">Kickoff & Cloud/Web3</span>
+            </button>
+            <button class="day-tab-btn" data-day="2">
+              <span class="day-tab-name">Day 02</span>
+              <span class="day-tab-date">Sat, Oct 17</span>
+              <span class="day-tab-theme">AI Hack & System Design</span>
+            </button>
+            <button class="day-tab-btn" data-day="3">
+              <span class="day-tab-name">Day 03</span>
+              <span class="day-tab-date">Sun, Oct 18</span>
+              <span class="day-tab-theme">Code Finals & Awards</span>
+            </button>
+          </div>
+
+          <div class="schedule-filter-row">
+            <div class="category-filter-chips">
+              <button class="filter-chip active" data-category="All">All</button>
+              <button class="filter-chip" data-category="Keynote">Keynote</button>
+              <button class="filter-chip" data-category="Workshop">Workshop</button>
+              <button class="filter-chip" data-category="Hackathon">Hackathon</button>
+              <button class="filter-chip" data-category="Competition">Competition</button>
+              <button class="filter-chip" data-category="Talk">Talk</button>
+              <button class="filter-chip" data-category="Gaming/Fun">Gaming/Fun</button>
+            </div>
+
+            <div class="search-input-wrapper">
+              <svg class="svg-icon svg-icon-sm search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="scheduleSearchInput" class="search-input" placeholder="Search sessions, speakers, or tags..." />
+            </div>
+          </div>
+        </div>
+
+        <div class="schedule-results-meta">
+          <span id="scheduleCountMeta">Displaying 7 sessions on Day 01</span>
+          <button class="btn btn-outline btn-sm itinerary-toggle-btn">
+            View My Itinerary Drawer
+          </button>
+        </div>
+
+        <div class="schedule-timeline-list" id="scheduleTimelineList"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         7. KEYNOTE SPEAKERS & MENTORS
+         ========================================================================= -->
+    <section class="section" id="speakers">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-meta-tag">&lt; KEYNOTE SPEAKERS & MENTORS /&gt;</div>
+          <h2 class="section-title">Learn from Industry Leaders</h2>
+          <p class="section-desc">
+            Distinguished Google Developer Experts (GDEs), cloud architects, and tech leads sharing insights. Click any profile to view their detailed technical dossier and scheduled sessions.
+          </p>
+        </div>
+
+        <div class="speakers-grid" id="speakersGrid"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         8. 24-HOUR HACK SPRINT & ₹2,50,000 PRIZE ARENA + BOUNTY CALCULATOR
+         ========================================================================= -->
+    <section class="section" id="hackathon">
+      <div class="container hack-section-wrapper">
+        <div class="section-header">
+          <div class="section-meta-tag">&lt; 24-HOUR HACK SPRINT /&gt;</div>
+          <h2 class="section-title">The ₹2,50,000 Hack Sprint Arena</h2>
+          <p class="section-desc">
+            Build unconstrained software across 24 hours. Compete for cash prizes, cloud credits, hardware grants, and direct interview pipelines.
+          </p>
+        </div>
+
+        <!-- Prize Matrix -->
+        <div class="prizes-grid" id="prizesGrid"></div>
+
+        <!-- Interactive Prize & Squad Simulator -->
+        <div class="prize-calculator-box">
+          <div class="calc-sliders-col">
+            <div>
+              <span class="meta-label">Interactive Hackathon Simulator</span>
+              <h3 style="font-size:1.15rem;font-weight:700;color:var(--text-primary);margin-top:2px;">
+                Squad Bounty & Judging Weightage Calculator
+              </h3>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div>
+                <label class="meta-label" for="calcTrackSelect">Project Domain Track</label>
+                <select id="calcTrackSelect" class="form-select" style="width:100%;margin-top:4px;">
+                  <option value="AI">Autonomous Multimodal AI</option>
+                  <option value="Cloud">Distributed Cloud & Microservices</option>
+                  <option value="Mobile">Cross-Platform Mobile Ecosystem</option>
+                  <option value="Social">Social Good & Healthcare Tech</option>
+                </select>
+              </div>
+              <div>
+                <label class="meta-label" for="calcTeamSize">Squad Member Size</label>
+                <select id="calcTeamSize" class="form-select" style="width:100%;margin-top:4px;">
+                  <option value="4">4 Members (Standard Squad)</option>
+                  <option value="3">3 Members</option>
+                  <option value="2">2 Members</option>
+                  <option value="1">1 Builder (Solo Hacker)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Rubric Sliders -->
+            <div class="calc-slider-group">
+              <div class="calc-slider-header">
+                <span>Technical Architecture & Depth (40%)</span>
+                <span>Weight: 40 pts</span>
+              </div>
+              <input type="range" id="calcSliderTech" class="calc-slider" min="30" max="100" value="94" />
+            </div>
+
+            <div class="calc-slider-group">
+              <div class="calc-slider-header">
+                <span>UI/UX Craft, Polish & Accessibility (35%)</span>
+                <span>Weight: 35 pts</span>
+              </div>
+              <input type="range" id="calcSliderUi" class="calc-slider" min="30" max="100" value="96" />
+            </div>
+
+            <div class="calc-slider-group">
+              <div class="calc-slider-header">
+                <span>Real-World Feasibility & Social Impact (25%)</span>
+                <span>Weight: 25 pts</span>
+              </div>
+              <input type="range" id="calcSliderImpact" class="calc-slider" min="30" max="100" value="90" />
+            </div>
+          </div>
+
+          <!-- Calculated Target Bounty Card -->
+          <div class="calc-summary-col">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span class="meta-label">Projected Juries Score</span>
+                <span id="calcTierBadge" class="tag tag-yellow">Grand Champion Target</span>
+              </div>
+              <div id="calcScoreDisplay" class="calc-score-number" style="margin-top:6px;">94/100</div>
+            </div>
+
+            <div style="border-top:1px dashed var(--border-hairline);padding-top:12px;">
+              <span class="meta-label">Target Prize Allocation</span>
+              <div id="calcBountyDisplay" class="calc-bounty-number" style="margin-top:4px;">₹1,00,000</div>
+              <div id="calcShareDisplay" style="font-family:var(--font-mono);font-size:0.85rem;color:var(--text-secondary);margin-top:4px;">
+                ₹25,000 / member
+              </div>
+            </div>
+
+            <div style="font-size:0.75rem;color:var(--text-muted);line-height:1.4;">
+              *Plus $2,000 Google Cloud compute vouchers and direct interview pipeline access.
+            </div>
+          </div>
+        </div>
+
+        <!-- 24-Hour Timeline Stepper -->
+        <div style="margin-top:var(--space-md);">
+          <span class="meta-label" style="margin-bottom:10px;display:block;">24-Hour Sprint Milestones (Oct 17, 09:00 AM — Oct 18, 09:00 AM)</span>
+          <div class="hack-timeline-strip">
+            <div class="hack-step-node">
+              <span class="hack-step-hour">HOUR 00 // 09:00 AM</span>
+              <span class="hack-step-title">Sprint Kickoff</span>
+              <span class="hack-step-desc">Problem statements released, GitHub template repos forked, cloud credits issued.</span>
+            </div>
+            <div class="hack-step-node">
+              <span class="hack-step-hour">HOUR 06 // 03:00 PM</span>
+              <span class="hack-step-title">Architecture Review</span>
+              <span class="hack-step-desc">1-on-1 mentor desks review schema designs, API contracts, and UX flowcharts.</span>
+            </div>
+            <div class="hack-step-node">
+              <span class="hack-step-hour">HOUR 15 // 12:00 AM</span>
+              <span class="hack-step-title">Midnight Sprint</span>
+              <span class="hack-step-desc">Food lounge fuel station opens; lightning trivia and technical debug jams.</span>
+            </div>
+            <div class="hack-step-node">
+              <span class="hack-step-hour">HOUR 24 // 09:00 AM</span>
+              <span class="hack-step-title">Code Freeze</span>
+              <span class="hack-step-desc">Commit lock on GitHub, PRs locked, live project expo setup commences in SAC.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         9. VENUE & CAMPUS LOGISTICS GUIDE + ARCHITECTURAL BLUEPRINT
+         ========================================================================= -->
+    <section class="section" id="venue">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-meta-tag">&lt; CAMPUS LOCATION & VENUE GUIDE /&gt;</div>
+          <h2 class="section-title">ITER SOA Khandagiri Campus</h2>
+          <p class="section-desc">
+            All keynotes, workshops, and hackathon pods take place in state-of-the-art facilities across the central engineering quadrangle.
+          </p>
+        </div>
+
+        <div class="venue-guide-box">
+          <!-- Venue Details & Interactive Zone Inspector -->
+          <div class="venue-details-pane">
+            <div class="venue-location-badge">
+              <span class="status-dot"></span>
+              <span>HOST INSTITUTION // BHUBANESWAR, ODISHA</span>
+            </div>
+            <div class="venue-address-text">
+              Institute of Technical Education and Research (ITER)<br/>
+              Siksha 'O' Anusandhan Deemed to be University,<br/>
+              Khandagiri Square, Bhubaneswar, Odisha 751030
+            </div>
+            <div class="venue-coordinates mono">
+              COORDINATES: 20°15'12.4"N 85°47'28.1"E • PIN: 751030
+            </div>
+
+            <!-- Interactive Blueprint Zone Inspector -->
+            <div class="campus-map-navigator">
+              <div class="map-zones-list">
+                <button class="map-zone-btn active" data-room="aud-101">
+                  <span class="map-zone-btn-title">Auditorium 101</span>
+                  <span class="map-zone-btn-sub">Main Keynotes (800 Seats)</span>
+                </button>
+                <button class="map-zone-btn" data-room="lab-302">
+                  <span class="map-zone-btn-title">Bansuri Guru Lab 3</span>
+                  <span class="map-zone-btn-sub">AI & Cloud Run Lab (120 PCs)</span>
+                </button>
+                <button class="map-zone-btn" data-room="sac-arena">
+                  <span class="map-zone-btn-title">SAC Grand Arena</span>
+                  <span class="map-zone-btn-sub">24-Hr Hack Arena (450 Pl.)</span>
+                </button>
+                <button class="map-zone-btn" data-room="sem-hall2">
+                  <span class="map-zone-btn-title">Seminar Hall 2</span>
+                  <span class="map-zone-btn-sub">Systems & Security (220 Seats)</span>
+                </button>
+              </div>
+
+              <div class="map-inspector-pane" id="mapLiveInspector"></div>
+            </div>
+          </div>
+
+          <!-- Transit & Connectivity Pane -->
+          <div class="transit-pane">
+            <span class="meta-label">Transit & Access Logistics</span>
+            <div class="transit-item">
+              <span class="transit-hub">Biju Patnaik Int'l Airport (BBI)</span>
+              <span class="transit-dist">7.5 km (~15 mins by cab)</span>
+              <p class="transit-note">Direct pre-paid taxi and app cab pick-up points straight to ITER Gate 1.</p>
+            </div>
+            <div class="transit-item">
+              <span class="transit-hub">Bhubaneswar Railway Station (BBS)</span>
+              <span class="transit-dist">9.5 km (~20 mins by bus/auto)</span>
+              <p class="transit-note">Mo Bus Route 10 connects directly from Master Canteen to Khandagiri Square.</p>
+            </div>
+            <div class="transit-item">
+              <span class="transit-hub">Baramunda Bus Terminal (ISBT)</span>
+              <span class="transit-dist">2.2 km (~5 mins)</span>
+              <p class="transit-note">Inter-state transit hub with frequent local autos and shuttles.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         10. FAQS
+         ========================================================================= -->
+    <section class="section" id="faqs">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-meta-tag">&lt; ESSENTIAL INFORMATION /&gt;</div>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-desc">
+            Everything you need to know about delegate eligibility, lab workstations, the 24-hour hackathon, and certificates.
+          </p>
+        </div>
+
+        <div class="faq-list" id="faqList"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         11. SPONSORS & PARTNERS
+         ========================================================================= -->
+    <section class="section" id="sponsors">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-meta-tag">&lt; COMMUNITY ECOSYSTEM /&gt;</div>
+          <h2 class="section-title">Supported by Industry & Community</h2>
+          <p class="section-desc">
+            Presented in collaboration with global engineering ecosystems, education partners, and regional developer chapters.
+          </p>
+        </div>
+
+        <div class="sponsors-grid" id="sponsorsGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       12. FOOTER
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <div class="brand-wrapper">
+            <div class="brand-symbol">
+              <span class="brand-symbol-bracket">&lt;</span>
+              <span class="brand-symbol-g1" style="color:#4285f4;">G</span>
+              <span class="brand-symbol-d" style="color:#ea4335;">D</span>
+              <span class="brand-symbol-g2" style="color:#34a853;">G</span>
+              <span class="brand-symbol-bracket">&gt;</span>
+            </div>
+            <div class="brand-text">
+              <div class="brand-title">Tekno Krraft <span style="color:#4285f4;">2026</span></div>
+              <div class="brand-sub">GDG @ SOA, ITER CHAPTER</div>
+            </div>
+          </div>
+          <p class="footer-brand-desc">
+            Google Developer Group at Siksha 'O' Anusandhan (ITER Chapter) is an independent university developer collective dedicated to fostering open-source software, cloud architectures, and machine intelligence.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links-list">
+            <li><a href="#about" class="footer-link">Fest Overview</a></li>
+            <li><a href="#tracks" class="footer-link">Technical Tracks</a></li>
+            <li><a href="#schedule" class="footer-link">3-Day Agenda</a></li>
+            <li><a href="#speakers" class="footer-link">Speakers & Mentors</a></li>
+            <li><a href="#hackathon" class="footer-link">Hack Sprint</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Resources</div>
+          <ul class="footer-links-list">
+            <li><a href="#venue" class="footer-link">Campus Logistics</a></li>
+            <li><a href="#faqs" class="footer-link">Festival FAQs</a></li>
+            <li><a href="#digitalPassCard" class="footer-link">Pass Generator</a></li>
+            <li><a href="https://developers.google.com/community/gdg" target="_blank" rel="noopener noreferrer" class="footer-link">GDG Global Program</a></li>
+            <li><a href="https://www.soa.ac.in/iter" target="_blank" rel="noopener noreferrer" class="footer-link">ITER SOA University</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Community Conduct</div>
+          <ul class="footer-links-list">
+            <li><a href="#" class="footer-link">Code of Conduct</a></li>
+            <li><a href="#" class="footer-link">Anti-Harassment Policy</a></li>
+            <li><a href="#" class="footer-link">Hackathon Rules</a></li>
+            <li><a href="#" class="footer-link">Contact Organizers</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 GDG @ SOA, ITER Chapter. Google Developer Groups is an independent group; activities and opinions expressed here should not be linked to Google, the corporation.
+        </div>
+        <div>
+          Crafted for UI Sphere GDG Recruitment Challenge • ITER Campus, Bhubaneswar
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       13. "MY ITINERARY" SLIDE-OUT DRAWER
+       ========================================================================= -->
+  <div class="itinerary-drawer-backdrop" id="itineraryBackdrop"></div>
+  <aside class="itinerary-drawer" id="itineraryDrawer" aria-label="My Fest Itinerary">
+    <div class="drawer-header">
+      <div class="drawer-title">
+        <svg class="svg-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>My Saved Itinerary</span>
+      </div>
+      <button id="closeItineraryBtn" class="btn-icon" aria-label="Close Itinerary Drawer">
+        <svg class="svg-icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="drawer-body" id="itineraryDrawerBody"></div>
+
+    <div class="drawer-footer">
+      <button id="exportIcsBtn" class="btn btn-primary" style="width:100%;">
+        <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export iCalendar (.ics)
+      </button>
+      <button id="clearItineraryBtn" class="btn btn-outline btn-sm" style="width:100%;">
+        Clear All Bookmarks
+      </button>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       14. SPEAKER DOSSIER MODAL
+       ========================================================================= -->
+  <div class="modal-backdrop" id="speakerModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="speakerModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <span class="modal-title" id="speakerModalTitle">Speaker Dossier</span>
+        <button id="closeSpeakerModalBtn" class="btn-icon" aria-label="Close Speaker Modal">
+          <svg class="svg-icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="speakerModalContent"></div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       15. MULTI-STEP REGISTRATION MODAL
+       ========================================================================= -->
+  <div class="modal-backdrop" id="regModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <span class="modal-title" id="regModalTitle">Delegate Registration • Tekno Krraft 2026</span>
+        <button id="closeRegModalBtn" class="btn-icon" aria-label="Close Registration Modal">
+          <svg class="svg-icon" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="step-stepper">
+          <span class="step-indicator active" id="stepInd1">1</span>
+          <span>Track Selection</span>
+          <span style="color:var(--text-muted);">&gt;</span>
+          <span class="step-indicator" id="stepInd2">2</span>
+          <span>Personal Info</span>
+          <span style="color:var(--text-muted);">&gt;</span>
+          <span class="step-indicator" id="stepInd3">3</span>
+          <span>Digital Pass</span>
+        </div>
+
+        <form id="registrationForm" onsubmit="return false;">
+          <div id="regStep1" style="display:flex;flex-direction:column;gap:14px;">
+            <div class="form-group">
+              <label class="form-label" for="regTrackSelect">Choose Primary Specialization Track</label>
+              <select id="regTrackSelect" class="form-select" required>
+                <option value="Generative AI & Machine Learning">Generative AI & Machine Learning (Lab 302)</option>
+                <option value="Full-Stack Web & Cloud Architecture">Full-Stack Web & Cloud Architecture (Hall 2)</option>
+                <option value="Mobile & Cross-Platform Systems">Mobile & Cross-Platform Systems (Lab 201)</option>
+                <option value="Cloud Infrastructure & Kubernetes">Cloud Infrastructure & Kubernetes (Auditorium 101)</option>
+              </select>
+              <span class="form-help">Seats in computer labs are reserved on verified check-in.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regParticipationType">Participation Mode</label>
+              <select id="regParticipationType" class="form-select">
+                <option value="Individual Delegate">Individual Delegate (Bootcamps & Keynotes)</option>
+                <option value="Hackathon Squad">Hack Sprint Team (2 to 4 Builders)</option>
+                <option value="Research Observer">Research Student / Observer</option>
+              </select>
+            </div>
+
+            <button type="button" id="regNextBtn1" class="btn btn-primary" style="margin-top:10px;">
+              Continue to Delegate Details
+              <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+
+          <div id="regStep2" style="display:none;flex-direction:column;gap:14px;">
+            <div class="form-group">
+              <label class="form-label" for="regNameInput">Full Legal Name</label>
+              <input type="text" id="regNameInput" class="form-input" placeholder="e.g. Aditya Sharma" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regEmailInput">Institutional / Personal Email</label>
+              <input type="email" id="regEmailInput" class="form-input" placeholder="name@soa.ac.in" required />
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div class="form-group">
+                <label class="form-label" for="regCollegeInput">College / Institute</label>
+                <input type="text" id="regCollegeInput" class="form-input" placeholder="ITER SOA" value="ITER, SOA University" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regGradYear">Year of Study</label>
+                <select id="regGradYear" class="form-select">
+                  <option value="2027">3rd Year (Class of 2027)</option>
+                  <option value="2028">2nd Year (Class of 2028)</option>
+                  <option value="2026">4th Year (Class of 2026)</option>
+                  <option value="2029">1st Year (Class of 2029)</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div class="form-group">
+                <label class="form-label" for="regGithubInput">GitHub / Portfolio URL</label>
+                <input type="text" id="regGithubInput" class="form-input" placeholder="github.com/username" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regSwagSize">Swag T-Shirt Size</label>
+                <select id="regSwagSize" class="form-select">
+                  <option value="M">Medium (M)</option>
+                  <option value="L">Large (L)</option>
+                  <option value="XL">Extra Large (XL)</option>
+                  <option value="S">Small (S)</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:10px;">
+              <button type="button" id="regBackBtn2" class="btn btn-outline" style="flex:1;">
+                Back
+              </button>
+              <button type="submit" id="regSubmitBtn" class="btn btn-primary" style="flex:2;">
+                Confirm & Issue Digital Pass
+              </button>
+            </div>
+          </div>
+
+          <div id="regStep3" style="display:none;flex-direction:column;gap:14px;text-align:center;padding:12px 0;">
+            <div style="width:52px;height:52px;border-radius:50%;background:var(--accent-green-subtle);border:1px solid var(--accent-green-border);color:var(--accent-green);display:flex;align-items:center;justify-content:center;margin:0 auto;">
+              <svg class="svg-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3 style="font-size:1.35rem;font-weight:800;color:var(--text-primary);">Registration Confirmed!</h3>
+            <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.6;max-width:380px;margin:0 auto;">
+              Welcome, <strong id="regConfirmedName" style="color:var(--text-primary);">Aditya Sharma</strong>! Your pass credentials have been provisioned in the ITER GDG system. Bring your student ID to delegate check-in on October 16.
+            </p>
+            <div style="background:var(--bg-primary);border:1px solid var(--border-hairline);padding:14px;border-radius:var(--radius-xs);text-align:left;display:flex;flex-direction:column;gap:4px;">
+              <span class="meta-label">Check-in Instructions</span>
+              <span style="font-size:0.8rem;color:var(--text-secondary);">Location: ITER Main Campus Foyer Desk • Time: 08:30 AM IST, Friday Oct 16</span>
+            </div>
+            <button type="button" id="regDoneBtn" class="btn btn-primary" style="width:100%;margin-top:8px;">
+              View Live Digital Pass in Hero
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       16. FLOATING DEVELOPER CLI TERMINAL (TK-SHELL)
+       ========================================================================= -->
+  <button id="cliTerminalTrigger" class="cli-floating-trigger" title="Launch Developer Terminal">
+    <span style="color:#34a853;">&gt;_</span>
+    <span>TK-SHELL</span>
+  </button>
+
+  <div id="cliTerminalDrawer" class="cli-terminal-drawer">
+    <div class="cli-header">
+      <div class="cli-header-title">
+        <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        <span>TK26 TERMINAL ENVIRONMENT // v2.6.0</span>
+      </div>
+      <button id="closeCliTerminalBtn" class="btn-icon" style="width:24px;height:24px;padding:2px;" aria-label="Close Terminal">
+        <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="cli-chips-row">
+      <span class="cli-chip" data-cmd="help">help</span>
+      <span class="cli-chip" data-cmd="tracks">tracks</span>
+      <span class="cli-chip" data-cmd="schedule 2">schedule 2</span>
+      <span class="cli-chip" data-cmd="speakers">speakers</span>
+      <span class="cli-chip" data-cmd="prizes">prizes</span>
+      <span class="cli-chip" data-cmd="pass Sarah">pass Sarah</span>
+      <span class="cli-chip" data-cmd="register">register</span>
+      <span class="cli-chip" data-cmd="clear">clear</span>
+    </div>
+
+    <div id="cliTerminalOutput" class="cli-output">
+      <div class="cli-line cli-info">TEKNO KRRAFT 2026 SHELL INITIALIZED [OCTOBER 16 - 18]</div>
+      <div class="cli-line cli-normal">Connected to GDG SOA ITER Chapter runtime. Type 'help' or click command chips.</div>
+    </div>
+
+    <div class="cli-input-bar">
+      <span class="cli-input-prefix" style="color:#34a853;">&gt;</span>
+      <input type="text" id="cliTerminalInput" class="cli-input" placeholder="Type a command (e.g. tracks, prizes, schedule)..." />
+    </div>
+  </div>
+
+  <!-- Application Module Script -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

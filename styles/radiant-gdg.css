@@ -1,0 +1,314 @@
+/* ==========================================================================
+   Tekno Krraft 2026 - Radiant Gemini AI Prompt Input & GDG Ambient Effects
+   True Google Developer Group Theme: #4285F4, #EA4335, #FBBC04, #34A853
+   ========================================================================== */
+
+@property --rotation {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes rotate-gradient {
+  to {
+    --rotation: 360deg;
+  }
+}
+
+/* --- Ambient GDG Glows & Background Canvas --- */
+.gdg-ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(120px);
+  opacity: 0.18;
+  z-index: 0;
+}
+
+.glow-blue {
+  width: 500px;
+  height: 500px;
+  background: #4285f4;
+  top: -100px;
+  left: 10%;
+}
+
+.glow-red {
+  width: 400px;
+  height: 400px;
+  background: #ea4335;
+  top: 20%;
+  right: 5%;
+}
+
+.glow-yellow {
+  width: 450px;
+  height: 450px;
+  background: #fbbc04;
+  bottom: 15%;
+  left: 15%;
+}
+
+.glow-green {
+  width: 420px;
+  height: 420px;
+  background: #34a853;
+  bottom: 5%;
+  right: 20%;
+}
+
+/* --------------------------------------------------------------------------
+   THE RADIANT PROMPT INPUT COMPONENT (Gemini Kinetic Gradient)
+   -------------------------------------------------------------------------- */
+.radiant-prompt-container {
+  width: 100%;
+  max-width: 680px;
+  margin: 28px 0;
+  position: relative;
+  z-index: 20;
+}
+
+.radiant-input-wrapper {
+  --border-size: 2.5px;
+  --gradient: conic-gradient(
+    from var(--rotation) at 50% 50%,
+    #4285f4 0%,
+    #ea4335 25%,
+    #fbbc04 50%,
+    #34a853 75%,
+    #4285f4 100%
+  );
+  animation: rotate-gradient 4.5s infinite linear;
+  position: relative;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+}
+
+.radiant-input-wrapper:hover {
+  box-shadow: 0 8px 32px rgba(66, 133, 244, 0.2);
+}
+
+/* The ambient outer glow */
+.radiant-input-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--border-size) * -1);
+  border-radius: inherit;
+  background: var(--gradient);
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.radiant-input-wrapper:hover::before,
+.radiant-input-wrapper:focus-within::before {
+  opacity: 0.85;
+  filter: blur(14px);
+}
+
+/* Sharp rotating border mask */
+.radiant-input-border {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--border-size);
+  background: var(--gradient);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Inner input flex row */
+.radiant-inner-row {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px 6px 14px;
+  height: 58px;
+  border-radius: var(--radius-full);
+  background: rgba(17, 21, 32, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+[data-theme="light"] .radiant-inner-row {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.radiant-btn-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.radiant-btn-action:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.radiant-text-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  min-width: 0;
+  height: 100%;
+}
+
+.radiant-text-input::placeholder {
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+.radiant-btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #4285f4;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(66, 133, 244, 0.3);
+}
+
+.radiant-btn-submit:hover {
+  background: #3367d6;
+  transform: scale(1.05);
+}
+
+.radiant-btn-submit:active {
+  transform: scale(0.95);
+}
+
+/* Prompt Chips Quick Selector */
+.radiant-chips-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.radiant-chips-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.radiant-chip {
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.radiant-chip:hover {
+  background: rgba(66, 133, 244, 0.15);
+  border-color: rgba(66, 133, 244, 0.4);
+  color: #4285f4;
+}
+
+/* Output Speech Bubble */
+.radiant-response-card {
+  margin-top: 14px;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  display: none;
+  animation: responseFadeIn 0.3s ease forwards;
+}
+
+.radiant-response-card.active {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@keyframes responseFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.radiant-response-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #4285f4;
+  font-weight: 600;
+}
+
+.radiant-response-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   GDG BRAND HIGHLIGHTS (Google Blue, Red, Yellow, Green)
+   -------------------------------------------------------------------------- */
+.gdg-badge-strip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(66, 133, 244, 0.08);
+  border: 1px solid rgba(66, 133, 244, 0.25);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #4285f4;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.gdg-dot-quad {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.gdg-dot-quad span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.dot-blue { background: #4285f4; }
+.dot-red { background: #ea4335; }
+.dot-yellow { background: #fbbc04; }
+.dot-green { background: #34a853; }
