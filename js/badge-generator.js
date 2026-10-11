@@ -65,6 +65,8 @@ export class BadgeGenerator {
     const absHash = Math.abs(hash) % 9000 + 1000;
     const passId = `TK26-${absHash}`;
     if (this.dispId) this.dispId.textContent = passId;
+    const backAuth = document.getElementById('passBackAuthToken');
+    if (backAuth) backAuth.textContent = `SHA256-TK26-SOA-${absHash}A`;
 
     // Room / Seat based on track
     let seat = "AUD-101 / ROW-C";

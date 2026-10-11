@@ -6,8 +6,9 @@ import { BadgeGenerator } from './badge-generator.js';
 import { ItineraryManager } from './itinerary.js';
 import { UiSphereCanvas } from './sphere-canvas.js';
 import { SoundSynthesizer } from './sound-effects.js';
-import { InteractiveToolsSuite } from './interactive-tools.js';
+import { InteractiveToolsSuite } from './interactive-tools.js?v=2.8';
 import { RadiantAssistant } from './radiant-assistant.js';
+import { AnimatedTopDock } from '../src/shaders/animated-top-dock/AnimatedTopDock.js';
 
 class TeknoKrraftApp {
   constructor() {
@@ -22,11 +23,23 @@ class TeknoKrraftApp {
     this.soundSynth = null;
     this.toolsSuite = null;
     this.radiantAssistant = null;
+    this.topDock = null;
 
     this.init();
   }
 
   init() {
+    // 0. Animated Top Dock (ThreeUI Command Bar Modern Variant - Exact Authored Source)
+    this.topDock = new AnimatedTopDock('#topDockHost', {
+      variant: 'modern',
+      proximity: 122,
+      spring: 0.19,
+      damping: 0.70,
+      widthGrowth: 17,
+      heightGrowth: 16,
+      drop: 3.5,
+    });
+
     // 1. Theme Manager
     this.initTheme();
 
@@ -197,9 +210,15 @@ class TeknoKrraftApp {
     if (!navContainer || !detailContainer) return;
 
     navContainer.innerHTML = TRACKS_DATA.map(trk => `
-      <button class="track-nav-item ${trk.id === this.selectedTrackId ? 'active' : ''}" data-id="${trk.id}">
-        <span class="track-item-code">${trk.tag} • ${trk.level}</span>
-        <span class="track-item-name">${trk.name}</span>
+      <button class="track-nav-item ${trk.id === this.selectedTrackId ? 'active' : ''}" data-id="${trk.id}" style="--track-accent:${trk.accentColor};">
+        <div class="track-nav-icon-badge">${trk.icon}</div>
+        <div class="track-nav-meta">
+          <div class="track-nav-tags-row">
+            <span class="track-item-code">${trk.tag}</span>
+            <span class="track-item-badge">${trk.pillLabel}</span>
+          </div>
+          <span class="track-item-name">${trk.name}</span>
+        </div>
       </button>
     `).join('');
 
@@ -214,28 +233,84 @@ class TeknoKrraftApp {
     const activeTrack = TRACKS_DATA.find(t => t.id === this.selectedTrackId) || TRACKS_DATA[0];
 
     detailContainer.innerHTML = `
-      <div class="track-detail-header">
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span class="tag tag-blue">${activeTrack.tag}</span>
-          <span class="tag tag-yellow">${activeTrack.level}</span>
-          <span class="tag">${activeTrack.duration}</span>
+      <!-- Hero Visual Track Banner with 3D Artwork -->
+      <div class="track-hero-visual-card">
+        <div class="track-hero-img-wrap">
+          <img src="${activeTrack.image}" alt="${activeTrack.name}" class="track-hero-cover-img" loading="lazy" />
+          <div class="track-hero-gradient-overlay"></div>
         </div>
-        <h3 class="track-detail-headline">${activeTrack.name}</h3>
-        <div class="track-detail-meta-bar">
-          <span>Track Directors: <strong>${activeTrack.lead}</strong></span>
+        <div class="track-hero-content">
+          <div class="track-hero-badges-row">
+            <span class="tag tag-glow-blue">${activeTrack.tag}</span>
+            <span class="tag tag-glow-yellow">${activeTrack.level}</span>
+            <span class="tag tag-glass">⏱ ${activeTrack.duration}</span>
+          </div>
+          <h3 class="track-hero-title">${activeTrack.name}</h3>
+          <div class="track-hero-lead-bar">
+            <span class="lead-avatar-icon">${activeTrack.icon}</span>
+            <span>Curated & Mentored by: <strong>${activeTrack.lead}</strong></span>
+          </div>
         </div>
+      </div>
+
+      <div class="track-summary-highlight">
         <p class="track-detail-summary">${activeTrack.summary}</p>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <span class="meta-label">Curriculum Modules & Deep Dives</span>
-        <div class="track-modules-list">
+      <div class="track-curriculum-section">
+        <div class="section-subheading-row">
+          <span class="meta-label">CURRICULUM MODULES & PRACTICAL SESSIONS</span>
+          <span class="track-modules-count">3 Intensive Modules</span>
+        </div>
+        <div class="track-modules-visual-grid">
           ${activeTrack.modules.map((m, i) => `
-            <div class="track-module-item">
-              <div class="track-module-title">MODULE 0${i + 1}: ${m.title}</div>
-              <div class="track-module-desc">${m.desc}</div>
+            <div class="track-module-card">
+              <div class="module-card-header">
+                <span class="module-number-pill">0${i + 1}</span>
+                <h4 class="module-card-title">${m.title}</h4>
+              </div>
+              <p class="module-card-desc">${m.desc}</p>
+              <div class="module-status-chip">
+                <span class="module-live-dot"></span>
+                <span>Production Lab & Hands-on Sandbox</span>
+              </div>
             </div>
           `).join('')}
+        </div>
+      </div>
+
+      <div class="track-meta-two-column">
+        <div class="track-deliverable-card">
+          <div class="deliverable-header">
+            <span class="deliverable-icon">🚀</span>
+            <div>
+              <span class="meta-label">CAPSTONE LAB DELIVERABLE</span>
+              <h4 class="deliverable-title">Verified Production Shipment</h4>
+            </div>
+          </div>
+          <p class="deliverable-desc">${activeTrack.deliverable}</p>
+          <div class="deliverable-badge-strip">
+            <span class="tag tag-green">✓ Evaluated by Google Mentors</span>
+            <span class="tag tag-blue">✓ Cloud Deployed</span>
+          </div>
+        </div>
+
+        <div class="track-stack-card">
+          <div class="stack-header">
+            <span class="stack-icon">⚡</span>
+            <div>
+              <span class="meta-label">TOOLCHAIN & ECOSYSTEM</span>
+              <h4 class="stack-title">Technologies Mastered</h4>
+            </div>
+          </div>
+          <div class="tools-pills-wrap">
+            ${activeTrack.tools.map(tool => `
+              <span class="tech-chip">
+                <span class="tech-dot" style="background:${activeTrack.accentColor};"></span>
+                <span>${tool}</span>
+              </span>
+            `).join('')}
+          </div>
         </div>
       </div>
 
@@ -243,23 +318,8 @@ class TeknoKrraftApp {
         <span class="track-prereqs-title">Prerequisites & Recommended Background</span>
         <div class="prereq-pill-group">
           ${activeTrack.prerequisites.map(p => `
-            <span class="prereq-pill">${p}</span>
+            <span class="prereq-pill"><span style="color:var(--accent-blue);margin-right:4px;">▸</span>${p}</span>
           `).join('')}
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr;gap:12px;background:var(--bg-primary);border:1px solid var(--border-hairline);padding:16px;border-radius:var(--radius-xs);">
-        <div>
-          <span class="meta-label">Capstone Lab Deliverable</span>
-          <div style="font-size:0.85rem;color:var(--text-primary);font-weight:600;margin-top:4px;">
-            ${activeTrack.deliverable}
-          </div>
-        </div>
-        <div>
-          <span class="meta-label">Toolchain & Ecosystem</span>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
-            ${activeTrack.tools.map(tool => `<span class="tag tag-green">${tool}</span>`).join('')}
-          </div>
         </div>
       </div>
     `;
@@ -470,14 +530,28 @@ class TeknoKrraftApp {
     if (!container) return;
 
     container.innerHTML = PRIZE_POOL_BREAKDOWN.map((p, i) => `
-      <div class="prize-card ${i === 0 ? 'grand-champ' : ''}">
-        <div class="prize-header">
-          <span class="prize-title">${p.title}</span>
-          ${i === 0 ? '<span class="tag tag-yellow">TOP BOUNTY</span>' : ''}
+      <div class="prize-card ${i === 0 ? 'grand-champ' : ''} ${i < 3 ? 'podium-tier' : 'specialist-tier'}">
+        <div class="prize-podium-header">
+          <span class="prize-rank-chip">${p.rank}</span>
+          <span class="prize-trophy-emoji">${p.icon}</span>
         </div>
-        <div class="prize-amount">${p.amount}</div>
-        <div class="prize-perks-list">
-          ${p.perks.map(perk => `<div class="prize-perk-item">${perk}</div>`).join('')}
+        <div class="prize-body">
+          <div class="prize-title-wrap">
+            <h3 class="prize-title">${p.title}</h3>
+            <span class="prize-badge-tag">${p.badge}</span>
+          </div>
+          <div class="prize-amount-wrap">
+            <span class="prize-amount">${p.amount}</span>
+            <span class="prize-currency-sub">Guaranteed Bounty</span>
+          </div>
+          <div class="prize-perks-list">
+            ${p.perks.map(perk => `
+              <div class="prize-perk-item">
+                <svg class="perk-check-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>${perk}</span>
+              </div>
+            `).join('')}
+          </div>
         </div>
       </div>
     `).join('');

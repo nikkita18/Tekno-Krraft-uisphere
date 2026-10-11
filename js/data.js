@@ -19,6 +19,9 @@ export const TRACKS_DATA = [
     accentColor: "var(--accent-red)",
     lead: "Rohan Samal & Dr. Ananya Patnaik",
     duration: "14 Hours across 3 Days",
+    icon: "✦",
+    image: "assets/images/track_ai_core.jpg",
+    pillLabel: "MOST POPULAR",
     summary: "From foundation models and Gemini API orchestration to production RAG architectures and multi-agent coordination systems.",
     prerequisites: ["Proficiency in Python 3.10+", "Core understanding of RESTful APIs", "Basic vector math & embeddings intuition"],
     modules: [
@@ -46,6 +49,9 @@ export const TRACKS_DATA = [
     accentColor: "var(--accent-blue)",
     lead: "Amitabh Swain",
     duration: "12 Hours across 3 Days",
+    icon: "⬡",
+    image: "assets/images/track_web_systems.jpg",
+    pillLabel: "FULL-STACK SHIPPER",
     summary: "Architecting resilient, distributed web systems using modern reactive runtimes, serverless edge functions, and Google Cloud Run.",
     prerequisites: ["Modern JavaScript/TypeScript (ES2022+)", "Git workflow fundamentals", "HTTP/REST mental model"],
     modules: [
@@ -73,6 +79,9 @@ export const TRACKS_DATA = [
     accentColor: "var(--accent-green)",
     lead: "Priyanka Mishra (GDE)",
     duration: "10 Hours across 3 Days",
+    icon: "📱",
+    image: "assets/images/track_flutter_mobile.jpg",
+    pillLabel: "120FPS FLUTTER",
     summary: "Crafting fluid 120fps cross-platform mobile experiences with Flutter, declarative state, and Firebase serverless backends.",
     prerequisites: ["Object-oriented programming concepts", "Basic mobile UI paradigms", "Dart/Flutter IDE setup"],
     modules: [
@@ -100,6 +109,9 @@ export const TRACKS_DATA = [
     accentColor: "var(--accent-yellow)",
     lead: "Dr. Ananya Patnaik & Guest Leads",
     duration: "10 Hours across 3 Days",
+    icon: "☸",
+    image: "assets/images/track_cloud_infra.jpg",
+    pillLabel: "GKE & CLOUD SRE",
     summary: "Automating cloud reliability: Google Kubernetes Engine (GKE), infrastructure as code with Terraform, and Prometheus/Grafana telemetry.",
     prerequisites: ["Linux CLI proficiency", "Basic container / Docker knowledge", "Basic networking (DNS, TLS, CIDR)"],
     modules: [
@@ -516,40 +528,58 @@ export const SCHEDULE_DATA = [
 
 export const PRIZE_POOL_BREAKDOWN = [
   {
-    title: "Grand Champion (First Place)",
+    title: "Grand Champion",
+    rank: "1ST PLACE",
+    icon: "🏆",
+    badge: "TOP BOUNTY",
     amount: "₹1,00,000",
     currency: "INR",
-    perks: ["Direct fast-track interview with hiring partners", "Google Cloud credits ($2,000 USD)", "Champion Trophy & Swag Box", "GDG Mentor Fellowship (6 Months)"]
+    perks: ["Direct fast-track interview with hiring partners", "Google Cloud credits ($2,000 USD)", "Champion Trophy & Deluxe Swag Box", "GDG Mentor Fellowship (6 Months)"]
   },
   {
     title: "First Runner-Up",
+    rank: "2ND PLACE",
+    icon: "🥈",
+    badge: "SILVER PODIUM",
     amount: "₹60,000",
     currency: "INR",
     perks: ["Cloud credits ($1,000 USD)", "Runner-Up Trophy", "Curated Dev kit & swag"]
   },
   {
     title: "Second Runner-Up",
+    rank: "3RD PLACE",
+    icon: "🥉",
+    badge: "BRONZE PODIUM",
     amount: "₹35,000",
     currency: "INR",
     perks: ["Cloud credits ($500 USD)", "Bronze Trophy", "Developer kit"]
   },
   {
     title: "Best Multimodal AI Innovation",
+    rank: "SPECIAL TRACK",
+    icon: "🤖",
+    badge: "AI SPECIALIST",
     amount: "₹25,000",
     currency: "INR",
     perks: ["Specialist AI Trophy", "Vertex AI feature spotlight", "Sponsored by AI Track"]
   },
   {
     title: "Best UI/UX Craft & Accessibility",
+    rank: "SPECIAL TRACK",
+    icon: "🎨",
+    badge: "DESIGN EXCELLENCE",
     amount: "₹20,000",
     currency: "INR",
     perks: ["UI Sphere Design Excellence Citation", "Specialist Craft Trophy", "Figma Pro sponsorship"]
   },
   {
     title: "Best All-Women Engineering Team",
+    rank: "SPECIAL TRACK",
+    icon: "⭐",
+    badge: "WTM CITATION",
     amount: "₹10,000",
     currency: "INR",
-    perks: ["Women Techmakers Odisha Citation", "Mentorship access"]
+    perks: ["Women Techmakers Odisha Citation", "Mentorship access & incubation"]
   }
 ];
 

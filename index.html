@@ -8,17 +8,19 @@
   <meta name="keywords" content="Tekno Krraft 2026, GDG ITER, GDG SOA, Google Developer Groups, Hackathon, Gemini, Flutter, Cloud Run, GKE, UI Sphere" />
   <meta name="theme-color" content="#0b0e14" />
 
-  <!-- Google Fonts: Plus Jakarta Sans + JetBrains Mono -->
+  <!-- Google Fonts: Plus Jakarta Sans + JetBrains Mono + Fragment Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="styles/main.css" />
-  <link rel="stylesheet" href="styles/components.css" />
-  <link rel="stylesheet" href="styles/radiant-gdg.css" />
-  <link rel="stylesheet" href="styles/interactive-suite.css" />
-  <link rel="stylesheet" href="styles/clean-theme.css" />
+  <link rel="stylesheet" href="src/shaders/threeui.css?v=2.8" />
+  <link rel="stylesheet" href="styles/main.css?v=2.8" />
+  <link rel="stylesheet" href="styles/components.css?v=2.8" />
+  <link rel="stylesheet" href="styles/radiant-gdg.css?v=2.8" />
+  <link rel="stylesheet" href="styles/interactive-suite.css?v=2.8" />
+  <link rel="stylesheet" href="styles/clean-theme.css?v=2.8" />
+  <link rel="stylesheet" href="styles/top-dock.css?v=2.8" />
 </head>
 <body>
 
@@ -29,88 +31,9 @@
   <div class="gdg-ambient-glow glow-green"></div>
 
   <!-- =========================================================================
-       1. NAVIGATION HEADER (Google Developer Group Identity)
+       1. ANIMATED TOP DOCK (Authored Sable Proximity-Spring Menu r128)
        ========================================================================= -->
-  <header class="site-header" id="siteHeader">
-    <div class="container nav-container">
-      <a href="#hero" class="brand-wrapper" aria-label="Tekno Krraft 2026 Home">
-        <div class="brand-symbol">
-          <span class="brand-symbol-bracket">&lt;</span>
-          <span class="brand-symbol-g1" style="color:#4285f4;">G</span>
-          <span class="brand-symbol-d" style="color:#ea4335;">D</span>
-          <span class="brand-symbol-g2" style="color:#34a853;">G</span>
-          <span class="brand-symbol-bracket">&gt;</span>
-        </div>
-        <div class="brand-text">
-          <div class="brand-title">Tekno Krraft <span style="color:#4285f4;">2026</span></div>
-          <div class="brand-sub">GDG @ SOA, ITER CHAPTER</div>
-        </div>
-      </a>
-
-      <nav class="desktop-nav" aria-label="Main Navigation">
-        <a href="#oracle" class="nav-link">Ask Gemini</a>
-        <a href="#pass" class="nav-link">Delegate Pass</a>
-        <a href="#tracks" class="nav-link">Tracks</a>
-        <a href="#schedule" class="nav-link">Schedule</a>
-        <a href="#speakers" class="nav-link">Speakers</a>
-        <a href="#hackathon" class="nav-link">Hack Sprint</a>
-        <a href="#venue" class="nav-link">Venue</a>
-        <a href="#faqs" class="nav-link">FAQs</a>
-      </nav>
-
-      <div class="nav-actions">
-        <!-- Tactile Sound Synthesizer Toggle -->
-        <button id="soundToggleBtn" class="btn-icon" aria-label="Toggle Sound Effects" title="Tactile Sound Feedback">
-          <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24" style="color:var(--text-muted);">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-            <line x1="23" y1="9" x2="17" y2="15"/>
-            <line x1="17" y1="9" x2="23" y2="15"/>
-          </svg>
-        </button>
-
-        <!-- My Schedule Drawer Trigger -->
-        <button class="btn btn-outline btn-sm itinerary-toggle-btn" title="View Saved Itinerary">
-          <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-            <line x1="16" y1="2" x2="16" y2="6"/>
-            <line x1="8" y1="2" x2="8" y2="6"/>
-            <line x1="3" y1="10" x2="21" y2="10"/>
-          </svg>
-          <span>My Plan</span>
-          <span class="itinerary-btn-badge" style="display:none;">0</span>
-        </button>
-
-        <!-- Theme Toggle -->
-        <button id="themeToggleBtn" class="btn-icon" aria-label="Toggle visual theme" title="Toggle theme">
-          <svg class="svg-icon" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/>
-            <line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/>
-            <line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
-        </button>
-
-        <!-- Register CTA -->
-        <button class="btn btn-primary btn-sm open-reg-modal-btn">
-          Register Now
-        </button>
-
-        <!-- Mobile Menu Button -->
-        <button id="mobileMenuBtn" class="btn-icon mobile-menu-btn" aria-label="Open mobile menu" aria-expanded="false">
-          <svg class="svg-icon" viewBox="0 0 24 24">
-            <line x1="3" y1="12" x2="21" y2="12"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <line x1="3" y1="18" x2="21" y2="18"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
+  <div id="topDockHost" class="top-dock-host-frame"></div>
 
   <!-- Mobile Nav Drawer -->
   <div id="mobileNavDrawer" class="mobile-nav-drawer" aria-hidden="true">
@@ -441,26 +364,93 @@
 
               <!-- Back Face -->
               <div class="pass-face-back">
-                <div>
-                  <span class="meta-label">DELEGATE CREDENTIAL VERIFICATION</span>
-                  <div style="font-size:0.85rem;color:var(--text-primary);font-weight:700;margin-top:4px;">
-                    Siksha 'O' Anusandhan Security Gate Pass
+                <!-- Top Header: Security Gate Pass & Token -->
+                <div class="pass-back-header">
+                  <div class="pass-back-header-left">
+                    <span class="meta-label">SECURITY VERIFICATION PROTOCOL</span>
+                    <div class="pass-back-title">
+                      Siksha 'O' Anusandhan Security Gate Pass
+                    </div>
                   </div>
-                  <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);margin-top:2px;">
-                    AUTH TOKEN: SHA256-TK26-SOA-9812A
+                  <span class="pass-chip-pill">NFC // ACTIVE</span>
+                </div>
+
+                <!-- Auth Token & Access Status -->
+                <div class="pass-back-token-bar">
+                  <span class="meta-label">CRYPTO AUTH TOKEN</span>
+                  <div id="passBackAuthToken" class="pass-back-token-val">SHA256-TK26-SOA-9812A</div>
+                </div>
+
+                <!-- Attendee Entitlements / Access Permissions Grid -->
+                <div class="pass-access-matrix">
+                  <div class="pass-matrix-item">
+                    <span class="matrix-check">✓</span>
+                    <div>
+                      <span class="matrix-title">Keynote Hall</span>
+                      <span class="matrix-sub">Audi 1 Access</span>
+                    </div>
+                  </div>
+                  <div class="pass-matrix-item">
+                    <span class="matrix-check">✓</span>
+                    <div>
+                      <span class="matrix-title">24h Hack Sprint</span>
+                      <span class="matrix-sub">Lab 302 Workstation</span>
+                    </div>
+                  </div>
+                  <div class="pass-matrix-item">
+                    <span class="matrix-check">✓</span>
+                    <div>
+                      <span class="matrix-title">AI Hands-on Labs</span>
+                      <span class="matrix-sub">GPU Compute Node</span>
+                    </div>
+                  </div>
+                  <div class="pass-matrix-item">
+                    <span class="matrix-check">✓</span>
+                    <div>
+                      <span class="matrix-title">Dev Swag & Meals</span>
+                      <span class="matrix-sub">Token Verified</span>
+                    </div>
                   </div>
                 </div>
 
-                <div style="background:var(--bg-surface);border:1px solid var(--border-hairline);padding:10px;border-radius:var(--radius-xs);display:flex;flex-direction:column;gap:4px;">
-                  <span class="meta-label">CAMPUS WI-FI CREDENTIALS</span>
-                  <span style="font-family:var(--font-mono);font-size:0.75rem;color:#34a853;">SSID: ITER_GDG_GUEST</span>
-                  <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-secondary);">KEY: tekno2026!iter</span>
+                <!-- Wi-Fi Credentials Card -->
+                <div class="pass-wifi-box">
+                  <div class="pass-wifi-header">
+                    <span class="meta-label">CAMPUS HIGH-SPEED WI-FI</span>
+                    <span class="wifi-speed-pill">1 Gbps // FIBER</span>
+                  </div>
+                  <div class="pass-wifi-creds">
+                    <div class="pass-wifi-field">
+                      <span class="wifi-label">SSID:</span>
+                      <span class="wifi-val" style="color:#34a853;">ITER_GDG_GUEST</span>
+                    </div>
+                    <div class="pass-wifi-field">
+                      <span class="wifi-label">KEY:</span>
+                      <span class="wifi-val" style="color:#a8c7fa;">tekno2026!iter</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div>
-                  <span class="meta-label">EMERGENCY & HELPDESK</span>
-                  <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-muted);">
-                    Operations Desk: Main Quad Foyer • Help: +91 674 2350588
+                <!-- Footer: Emergency Desk & Security Seal -->
+                <div class="pass-back-footer">
+                  <div class="pass-back-contact">
+                    <span class="meta-label">SECURITY & HELP DESK</span>
+                    <span class="pass-back-contact-val">Main Quad Foyer • +91 674 2350588</span>
+                  </div>
+                  <div class="pass-back-barcode-mini" title="Scan to verify gate pass">
+                    <svg viewBox="0 0 48 24" class="mini-barcode-svg">
+                      <line x1="2" y1="0" x2="2" y2="24" stroke="currentColor" stroke-width="2"/>
+                      <line x1="6" y1="0" x2="2" y2="24" stroke="currentColor" stroke-width="1"/>
+                      <line x1="9" y1="0" x2="9" y2="24" stroke="currentColor" stroke-width="3"/>
+                      <line x1="14" y1="0" x2="14" y2="24" stroke="currentColor" stroke-width="1"/>
+                      <line x1="17" y1="0" x2="17" y2="24" stroke="currentColor" stroke-width="2"/>
+                      <line x1="22" y1="0" x2="22" y2="24" stroke="currentColor" stroke-width="4"/>
+                      <line x1="28" y1="0" x2="28" y2="24" stroke="currentColor" stroke-width="1"/>
+                      <line x1="31" y1="0" x2="31" y2="24" stroke="currentColor" stroke-width="3"/>
+                      <line x1="36" y1="0" x2="36" y2="24" stroke="currentColor" stroke-width="2"/>
+                      <line x1="41" y1="0" x2="41" y2="24" stroke="currentColor" stroke-width="1"/>
+                      <line x1="44" y1="0" x2="44" y2="24" stroke="currentColor" stroke-width="2"/>
+                    </svg>
                   </div>
                 </div>
               </div>
@@ -523,40 +513,141 @@
           </p>
         </div>
 
-        <div class="features-grid">
-          <div class="feature-box">
-            <div class="feature-index">PILLAR 01 // HANDS-ON</div>
-            <h3 class="feature-title">Hands-On Technical Bootcamps</h3>
-            <p class="feature-text">
-              Build real-world projects alongside Google experts and certified mentors in high-performance computer laboratories. Walk away with deployed production apps rather than static slides.
-            </p>
-            <div class="feature-footer">
-              <span>Vertex AI & Google Cloud Run Labs</span>
-              <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <!-- Top Split Hero: Visual Hackers Stage + Key Metrics Matrix -->
+        <div class="fest-hero-split">
+          <div class="fest-showcase-img-card">
+            <img src="assets/images/innovators_coding_lab.jpg" alt="1,500+ Developers Collaborating at Tekno Krraft" class="fest-showcase-img" loading="lazy" />
+            <div class="fest-showcase-gradient"></div>
+            <div class="fest-showcase-overlay">
+              <div class="fest-showcase-badges">
+                <span class="tag tag-glow-blue">🚀 1,500+ BUILDERS</span>
+                <span class="tag tag-glow-yellow">📍 ITER SOA ENGINEERING QUAD</span>
+                <span class="tag tag-glow-green">✨ OCT 16-18, 2026</span>
+              </div>
+              <h3 class="fest-showcase-title">Eastern India's Premier Developer Gathering</h3>
+              <p class="fest-showcase-caption">
+                Where hands-on engineering replaces static presentations. Build production-grade agents, deploy fault-tolerant cloud clusters, and test code live with certified Google Developer Experts.
+              </p>
             </div>
           </div>
 
-          <div class="feature-box">
-            <div class="feature-index">PILLAR 02 // SPRINT</div>
-            <h3 class="feature-title">24-Hour AI/ML Hack Sprint</h3>
-            <p class="feature-text">
-              Collaborate in teams of 2 to 4 to prototype solutions addressing pressing challenges in health, governance, climate, and autonomous software with continuous mentor access.
+          <div class="fest-metrics-matrix">
+            <div class="fest-metric-card">
+              <span class="fest-metric-icon">⚡</span>
+              <span class="fest-metric-val">100%</span>
+              <span class="fest-metric-title">LIVE PRODUCTION LABS</span>
+              <span class="fest-metric-desc">Deploy real software to Vertex AI & Cloud Run with zero simulated slides.</span>
+            </div>
+            <div class="fest-metric-card">
+              <span class="fest-metric-icon">🏆</span>
+              <span class="fest-metric-val">₹2.5L+</span>
+              <span class="fest-metric-title">HACK BOUNTY POOL</span>
+              <span class="fest-metric-desc">Direct cash prizes, compute grants & sponsor track challenges.</span>
+            </div>
+            <div class="fest-metric-card">
+              <span class="fest-metric-icon">🌐</span>
+              <span class="fest-metric-val">45+</span>
+              <span class="fest-metric-title">COLLEGES CONVERGING</span>
+              <span class="fest-metric-desc">Build nationwide developer networks and form cross-institution squads.</span>
+            </div>
+            <div class="fest-metric-card">
+              <span class="fest-metric-icon">📜</span>
+              <span class="fest-metric-val">TIER-1</span>
+              <span class="fest-metric-title">GDG CREDENTIALS</span>
+              <span class="fest-metric-desc">Verifiable certificates of engineering mastery signed by Google leads.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Pillars Redesigned into High-Impact Cards -->
+        <div class="pillars-showcase-grid">
+          <div class="pillar-card-rich pillar-blue">
+            <div class="pillar-top-row">
+              <span class="pillar-badge-num">PILLAR 01 // HANDS-ON</span>
+              <div class="pillar-icon-wrap" style="color:#4285f4;">💻</div>
+            </div>
+            <h3 class="pillar-headline">Hands-On Technical Bootcamps</h3>
+            <p class="pillar-description">
+              Work alongside Google Developer Experts in high-performance labs. Build production RAG pipelines, mobile micro-interactions, and multi-region microservices.
             </p>
-            <div class="feature-footer">
-              <span>₹2.5L Prize Pool & Sponsor Bounties</span>
-              <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <div class="pillar-perks-bullets">
+              <div class="pillar-bullet-item">
+                <span class="pillar-bullet-icon">✓</span>
+                <span>Vertex AI Studio & Gemini 1.5 Pro</span>
+              </div>
+              <div class="pillar-bullet-item">
+                <span class="pillar-bullet-icon">✓</span>
+                <span>Google Cloud Run Serverless Containers</span>
+              </div>
+              <div class="pillar-bullet-item">
+                <span class="pillar-bullet-icon">✓</span>
+                <span>Zero-Downtime Microservice Workflows</span>
+              </div>
+            </div>
+            <div class="pillar-tech-chips">
+              <span class="tech-chip"><span class="tech-dot" style="background:#4285f4;"></span>Vertex AI</span>
+              <span class="tech-chip"><span class="tech-dot" style="background:#34a853;"></span>Cloud Run</span>
+              <span class="tech-chip"><span class="tech-dot" style="background:#ea4335;"></span>LangChain</span>
             </div>
           </div>
 
-          <div class="feature-box">
-            <div class="feature-index">PILLAR 03 // ECOSYSTEM</div>
-            <h3 class="feature-title">Recognitions & Networking</h3>
-            <p class="feature-text">
-              Connect with leading technology hiring partners, win prizes, and earn industry credentials. Build lasting relationships with peers across 45+ premier institutions nationwide.
+          <div class="pillar-card-rich pillar-yellow">
+            <div class="pillar-top-row">
+              <span class="pillar-badge-num">PILLAR 02 // SPRINT</span>
+              <div class="pillar-icon-wrap" style="color:#fbbc04;">🚀</div>
+            </div>
+            <h3 class="pillar-headline">24-Hour AI/ML Hack Sprint</h3>
+            <p class="pillar-description">
+              Collaborate in squads of 2 to 4 to prototype solutions addressing pressing real-world challenges in health, governance, climate, and autonomous software.
             </p>
-            <div class="feature-footer">
-              <span>Official GDG Credentials & Swag Kits</span>
-              <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <div class="pillar-perks-bullets">
+              <div class="pillar-bullet-item">
+                <span class="pillar-bullet-icon">✓</span>
+                <span>₹2,50,000+ Verified Cash & Grant Pool</span>
+              </div>
+              <div class="pillar-bullet-item">
+                <span class="pillar-bullet-icon">✓</span>
+                <span>Midnight Technical Review Desks</span>
+              </div>
+              <div class="pillar-bullet-item">
+                <span class="pillar-bullet-icon">✓</span>
+                <span>Direct Fast-Track Hiring Interviews</span>
+              </div>
+            </div>
+            <div class="pillar-tech-chips">
+              <span class="tech-chip"><span class="tech-dot" style="background:#fbbc04;"></span>₹2.5L Bounty</span>
+              <span class="tech-chip"><span class="tech-dot" style="background:#4285f4;"></span>$2K Cloud Grants</span>
+              <span class="tech-chip"><span class="tech-dot" style="background:#34a853;"></span>Hiring Desk</span>
+            </div>
+          </div>
+
+          <div class="pillar-card-rich pillar-green">
+            <div class="pillar-top-row">
+              <span class="pillar-badge-num">PILLAR 03 // ECOSYSTEM</span>
+              <div class="pillar-icon-wrap" style="color:#34a853;">🌐</div>
+            </div>
+            <h3 class="pillar-headline">Recognitions & Networking</h3>
+            <p class="pillar-description">
+              Connect with leading technology hiring partners, earn verified credentials, and build lasting relationships with fellow builders across 45+ universities.
+            </p>
+            <div class="pillar-perks-bullets">
+              <div class="pillar-bullet-item">
+                <span class="pillar-bullet-icon">✓</span>
+                <span>Official GDG Credentials on Blockchain</span>
+              </div>
+              <div class="pillar-bullet-item">
+                <span class="pillar-bullet-icon">✓</span>
+                <span>Exclusive Developer Swag Kits</span>
+              </div>
+              <div class="pillar-bullet-item">
+                <span class="pillar-bullet-icon">✓</span>
+                <span>Mentorship Access Post-Fest</span>
+              </div>
+            </div>
+            <div class="pillar-tech-chips">
+              <span class="tech-chip"><span class="tech-dot" style="background:#34a853;"></span>GDG Credential</span>
+              <span class="tech-chip"><span class="tech-dot" style="background:#ea4335;"></span>Swag Vault</span>
+              <span class="tech-chip"><span class="tech-dot" style="background:#4285f4;"></span>SOA Network</span>
             </div>
           </div>
         </div>
@@ -673,6 +764,43 @@
           <p class="section-desc">
             Build unconstrained software across 24 hours. Compete for cash prizes, cloud credits, hardware grants, and direct interview pipelines.
           </p>
+        </div>
+
+        <!-- Hackathon Grand Stage Visual Banner -->
+        <div class="hack-grand-stage-card">
+          <div class="hack-stage-img-wrap">
+            <img src="assets/images/hackathon_trophy_stage.jpg" alt="Tekno Krraft 2026 ₹2.5L Hackathon Championship Arena" class="hack-stage-cover-img" loading="lazy" />
+            <div class="hack-stage-gradient-overlay"></div>
+          </div>
+          <div class="hack-stage-content">
+            <div class="hack-stage-badges">
+              <span class="tag tag-glow-yellow">🏆 ₹2,50,000+ CASH & BOUNTIES</span>
+              <span class="tag tag-glow-blue">⚡ 24-HOUR CONTINUOUS HACK</span>
+              <span class="tag tag-glow-green">✨ GOOGLE CLOUD POWERED</span>
+            </div>
+            <h3 class="hack-stage-headline">Build, Ship & Pitch at Flagship Speed</h3>
+            <p class="hack-stage-sub">
+              Compete against top engineering squads from 45+ universities. Continuous live mentor feedback, high-speed dedicated gigabit fiber, midnight caffeine bars, and direct interview pipelines with leading tech employers.
+            </p>
+            <div class="hack-stage-highlights-grid">
+              <div class="hack-perk-stat">
+                <span class="perk-stat-val">₹1,00,000</span>
+                <span class="perk-stat-lbl">Grand Champion Bounty</span>
+              </div>
+              <div class="hack-perk-stat">
+                <span class="perk-stat-val">$2,000 USD</span>
+                <span class="perk-stat-lbl">Google Cloud Grants</span>
+              </div>
+              <div class="hack-perk-stat">
+                <span class="perk-stat-val">100%</span>
+                <span class="perk-stat-lbl">Mentored Problem Sets</span>
+              </div>
+              <div class="hack-perk-stat">
+                <span class="perk-stat-val">SAC ARENA</span>
+                <span class="perk-stat-lbl">450+ Hacker Capacity</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Prize Matrix -->
@@ -815,6 +943,41 @@
             </div>
             <div class="venue-coordinates mono">
               COORDINATES: 20°15'12.4"N 85°47'28.1"E • PIN: 751030
+            </div>
+
+            <!-- 3D Spatial Campus Map Stage with Interactive Hotspot Radar Pins -->
+            <div class="campus-map-visual-stage">
+              <div class="campus-map-img-container">
+                <img src="assets/images/campus_isometric_map.jpg" alt="ITER SOA Campus Isometric 3D Blueprint" class="campus-map-hero-img" loading="lazy" />
+                <div class="campus-map-overlay-grid"></div>
+                
+                <!-- Interactive Glowing Hotspot Radar Pins -->
+                <button type="button" class="campus-radar-pin pin-auditorium active" data-room="aud-101" title="Auditorium 101 (Main Keynotes)">
+                  <span class="pin-radar-ring"></span>
+                  <span class="pin-core-dot"></span>
+                  <span class="pin-label-pill">AUDITORIUM 101</span>
+                </button>
+                <button type="button" class="campus-radar-pin pin-lab" data-room="lab-302" title="Bansuri Guru Lab 3 (AI & Cloud)">
+                  <span class="pin-radar-ring"></span>
+                  <span class="pin-core-dot"></span>
+                  <span class="pin-label-pill">CS LAB 3</span>
+                </button>
+                <button type="button" class="campus-radar-pin pin-sac" data-room="sac-arena" title="SAC Grand Arena (24h Hackathon)">
+                  <span class="pin-radar-ring"></span>
+                  <span class="pin-core-dot"></span>
+                  <span class="pin-label-pill">SAC ARENA</span>
+                </button>
+                <button type="button" class="campus-radar-pin pin-semhall" data-room="sem-hall2" title="Seminar Hall 2 (Systems)">
+                  <span class="pin-radar-ring"></span>
+                  <span class="pin-core-dot"></span>
+                  <span class="pin-label-pill">SEMINAR HALL 2</span>
+                </button>
+              </div>
+              
+              <div class="campus-map-telemetry-badge">
+                <span class="status-dot"></span>
+                <span>3D SPATIAL TELEMETRY • ITER SOA KHANDAGIRI</span>
+              </div>
             </div>
 
             <!-- Interactive Blueprint Zone Inspector -->
@@ -1179,7 +1342,11 @@
     </div>
   </div>
 
+
+  <!-- Three.js r128 (Authored Shader & Particle Background Runtime) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <!-- Application Module Script -->
-  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/app.js?v=2.8"></script>
 </body>
 </html>

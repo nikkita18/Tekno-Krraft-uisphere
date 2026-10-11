@@ -49,34 +49,6 @@
   perspective: 1000px;
 }
 
-.digital-pass-card {
-  transition: transform 0.15s ease-out, box-shadow 0.2s ease;
-  transform-style: preserve-3d;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Holographic Iridescent Glare Sheen */
-.digital-pass-card::after {
-  content: "";
-  position: absolute;
-  inset: -100%;
-  background: linear-gradient(
-    var(--glare-angle, 115deg),
-    transparent 20%,
-    rgba(59, 130, 246, 0.25) 40%,
-    rgba(239, 68, 68, 0.25) 50%,
-    rgba(245, 158, 11, 0.25) 60%,
-    rgba(16, 185, 129, 0.25) 70%,
-    transparent 80%
-  );
-  opacity: var(--glare-opacity, 0);
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  mix-blend-mode: overlay;
-  z-index: 10;
-}
-
 /* Realistic Lanyard Clip */
 .pass-lanyard-strap {
   position: absolute;
@@ -106,28 +78,254 @@
 .pass-face-front,
 .pass-face-back {
   width: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.pass-face-front {
+  position: relative;
+  border-radius: 22px;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  backface-visibility: hidden;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: rotateY(0deg);
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
 .pass-face-back {
   position: absolute;
-  inset: 20px;
+  inset: 0;
+  padding: 22px 24px;
+  border-radius: 22px;
   transform: rotateY(180deg);
-  background: var(--bg-primary);
+  background: linear-gradient(145deg, rgba(20, 26, 40, 0.98) 0%, rgba(10, 13, 20, 0.99) 100%);
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  gap: 10px;
+  box-sizing: border-box;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.pass-back-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.pass-back-title {
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  margin-top: 3px;
+  line-height: 1.3;
+}
+
+.pass-chip-pill {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(52, 168, 83, 0.15);
+  border: 1px solid rgba(52, 168, 83, 0.4);
+  color: #34a853;
+  white-space: nowrap;
+}
+
+.pass-back-token-bar {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.pass-back-token-val {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #6ba1ff;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.pass-access-matrix {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.pass-matrix-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+}
+
+.matrix-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: rgba(52, 168, 83, 0.2);
+  color: #34a853;
+  font-size: 0.68rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.matrix-title {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  line-height: 1.2;
+}
+
+.matrix-sub {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: #94a3b8;
+  margin-top: 1px;
+}
+
+.pass-wifi-box {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(66, 133, 244, 0.25);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pass-wifi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wifi-speed-pill {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: #70a5ff;
+  font-weight: 600;
+}
+
+.pass-wifi-creds {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pass-wifi-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.wifi-label {
+  color: var(--text-muted);
+  font-size: 0.65rem;
+}
+
+.wifi-val {
+  font-weight: 600;
+}
+
+.pass-back-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 7px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.pass-back-contact {
+  display: flex;
+  flex-direction: column;
+}
+
+.pass-back-contact-val {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.pass-back-barcode-mini {
+  color: var(--text-muted);
+  opacity: 0.75;
+}
+
+.mini-barcode-svg {
+  width: 44px;
+  height: 22px;
+  display: block;
 }
 
 .digital-pass-card.flipped .pass-face-front {
   transform: rotateY(180deg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .digital-pass-card.flipped .pass-face-back {
   transform: rotateY(0deg);
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 3;
+}
+
+/* Backside Micro-Interactions */
+.pass-matrix-item {
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.pass-matrix-item:hover {
+  background: rgba(66, 133, 244, 0.12);
+  border-color: rgba(66, 133, 244, 0.35);
+  transform: translateY(-1px);
+}
+
+.pass-wifi-box {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pass-wifi-box:hover {
+  border-color: rgba(66, 133, 244, 0.5);
+  box-shadow: 0 4px 16px rgba(66, 133, 244, 0.2);
+  transform: translateY(-1px);
+}
+
+.pass-back-token-bar {
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.pass-back-token-bar:hover {
+  background: rgba(66, 133, 244, 0.08);
+  border-color: rgba(66, 133, 244, 0.3);
 }
 
 /* --------------------------------------------------------------------------

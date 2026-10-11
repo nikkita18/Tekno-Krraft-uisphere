@@ -30,14 +30,16 @@ export class InteractiveToolsSuite {
     flipBtn?.addEventListener('click', () => {
       isFlipped = !isFlipped;
       card.classList.toggle('flipped', isFlipped);
+      card.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+      card.style.transform = 'perspective(850px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      card.style.setProperty('--glare-opacity', '0');
       flipBtn.innerHTML = isFlipped 
         ? `<svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg> Flip to Front`
         : `<svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg> Flip Pass (Backside)`;
     });
 
-    // 3D Mouse Parallax & Holographic Foil
-    container.addEventListener('mousemove', (e) => {
-      if (isFlipped) return;
+    // 3D Mouse Parallax & Holographic Foil (works seamlessly on Front and Flipped Back Face)
+    const handleMove = (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -45,30 +47,40 @@ export class InteractiveToolsSuite {
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
       
-      const rotateX = ((y - centerY) / centerY) * -12;
-      const rotateY = ((x - centerX) / centerX) * 12;
+      const rotateX = ((y - centerY) / centerY) * -14;
+      const rotateY = ((x - centerX) / centerX) * 14;
 
-      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      card.style.transition = 'transform 0.08s ease-out';
+      card.style.transform = `perspective(850px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.03, 1.03, 1.03)`;
       
-      // Update holographic foil reflection gradient angle
+      // Update holographic foil reflection gradient angle & spotlight coordinates
       const glareAngle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI) + 90;
-      card.style.setProperty('--glare-angle', `${glareAngle}deg`);
-      card.style.setProperty('--glare-opacity', '0.25');
-    });
+      card.style.setProperty('--glare-angle', `${glareAngle.toFixed(1)}deg`);
+      card.style.setProperty('--glare-opacity', '0.88');
+      card.style.setProperty('--mouse-x', `${x.toFixed(1)}px`);
+      card.style.setProperty('--mouse-y', `${y.toFixed(1)}px`);
+    };
 
-    container.addEventListener('mouseleave', () => {
-      if (!isFlipped) {
-        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-        card.style.setProperty('--glare-opacity', '0');
-      }
-    });
+    const handleEnter = () => {
+      card.style.transition = 'transform 0.12s ease-out';
+    };
+
+    const handleLeave = () => {
+      card.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)';
+      card.style.transform = 'perspective(850px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      card.style.setProperty('--glare-opacity', '0');
+    };
+
+    card.addEventListener('mouseenter', handleEnter);
+    card.addEventListener('mousemove', handleMove);
+    card.addEventListener('mouseleave', handleLeave);
   }
 
   /* ------------------------------------------------------------------------
      2. CARD SPOTLIGHT HOVER (Cursor-following radial highlight)
      ------------------------------------------------------------------------ */
   initCardSpotlightHover() {
-    const cards = document.querySelectorAll('.session-card, .feature-box, .speaker-card, .prize-card, .track-workbench, .venue-guide-box');
+    const cards = document.querySelectorAll('.session-card, .feature-box, .speaker-card, .prize-card, .track-workbench, .venue-guide-box, .digital-pass-card');
     cards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -134,7 +146,7 @@ export class InteractiveToolsSuite {
       }
     };
 
-    const zoneButtons = document.querySelectorAll('.map-zone-btn');
+    const zoneButtons = document.querySelectorAll('.map-zone-btn, .campus-radar-pin');
     const displayBox = document.getElementById('mapLiveInspector');
     if (!displayBox) return;
 
