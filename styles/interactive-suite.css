@@ -492,6 +492,25 @@
   color: var(--text-primary);
 }
 
+[data-theme="light"] .map-zone-btn {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #475569;
+}
+
+[data-theme="light"] .map-zone-btn:hover {
+  background: #f8fafc;
+  border-color: rgba(15, 23, 42, 0.2);
+  color: #0f172a;
+}
+
+[data-theme="light"] .map-zone-btn.active {
+  background: rgba(24, 128, 56, 0.08);
+  border-color: rgba(15, 23, 42, 0.1);
+  border-left: 3px solid var(--accent-green);
+  color: #0f172a;
+}
+
 .map-zone-btn-title {
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -511,6 +530,12 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+[data-theme="light"] .map-inspector-pane {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 /* --------------------------------------------------------------------------

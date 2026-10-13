@@ -93,6 +93,9 @@ class TeknoKrraftApp {
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('tk26_theme', next);
       this.updateThemeIcon(next);
+      if (this.soundSynth?.isEnabled) {
+        this.soundSynth.playChime();
+      }
     });
   }
 

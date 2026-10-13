@@ -14,13 +14,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="src/shaders/threeui.css?v=2.8" />
-  <link rel="stylesheet" href="styles/main.css?v=2.8" />
-  <link rel="stylesheet" href="styles/components.css?v=2.8" />
-  <link rel="stylesheet" href="styles/radiant-gdg.css?v=2.8" />
-  <link rel="stylesheet" href="styles/interactive-suite.css?v=2.8" />
-  <link rel="stylesheet" href="styles/clean-theme.css?v=2.8" />
-  <link rel="stylesheet" href="styles/top-dock.css?v=2.8" />
+  <link rel="stylesheet" href="src/shaders/threeui.css?v=3.5" />
+  <link rel="stylesheet" href="styles/main.css?v=3.6" />
+  <link rel="stylesheet" href="styles/components.css?v=3.6" />
+  <link rel="stylesheet" href="styles/radiant-gdg.css?v=3.6" />
+  <link rel="stylesheet" href="styles/interactive-suite.css?v=3.6" />
+  <link rel="stylesheet" href="styles/clean-theme.css?v=3.6" />
+  <link rel="stylesheet" href="styles/top-dock.css?v=3.6" />
 </head>
 <body>
 
@@ -68,84 +68,121 @@
                 <span style="background:#fbbc04;"></span>
                 <span style="background:#34a853;"></span>
               </div>
-              <span>GDG @ SOA, ITER CHAPTER</span>
+              <span class="hero-pill-org">GDG @ SOA, ITER CHAPTER</span>
               <span class="pill-divider">•</span>
               <span class="pill-date">OCTOBER 16 – 18, 2026</span>
+              <span class="hero-live-beacon">
+                <span class="beacon-pulse"></span>
+                <span>ROUND 1 OPEN</span>
+              </span>
             </div>
 
             <!-- Master Charismatic Headline -->
             <h1 class="hero-title-giant">
               <span class="hero-title-tekno">Tekno</span>
               <span class="hero-title-krraft">Krraft</span>
-              <span class="hero-year-badge">2026</span>
+              <span class="hero-year-badge">
+                <span class="badge-dot-live"></span>
+                <span>2026</span>
+              </span>
             </h1>
 
             <p class="hero-subtitle-clean">
-              A 3-Day Celebration of Code, Cloud, AI & Innovation.<br />
-              Where 1,500+ builders converge to pioneer real-world software systems at Siksha 'O' Anusandhan, Bhubaneswar.
+              A 3-Day Celebration of <span class="hero-keyword keyword-blue">Code</span>, <span class="hero-keyword keyword-red">Cloud</span>, <span class="hero-keyword keyword-yellow">AI</span> & <span class="hero-keyword keyword-green">Innovation</span>.<br />
+              Where 1,500+ developers converge to architect production software systems at Siksha 'O' Anusandhan, Bhubaneswar.
             </p>
 
             <!-- 4-Digit Google Colored Tactile Glass Countdown -->
             <div class="countdown-wrapper-clean">
               <div class="countdown-status-indicator">
                 <span class="live-pulse-dot"></span>
-                <span>LAUNCH COUNTDOWN // 16 OCT 2026</span>
+                <span>OFFICIAL LAUNCH COUNTDOWN // 16 OCT 2026</span>
+                <span class="countdown-sync-badge">LIVE SYNC</span>
               </div>
               <div class="hero-countdown-strip">
-                <div class="countdown-box-clean">
-                  <span id="cdDays" class="countdown-val-clean val-blue">04</span>
+                <div class="countdown-box-clean card-blue">
+                  <div class="countdown-glow-line"></div>
+                  <span id="cdDays" class="countdown-val-clean val-blue">03</span>
                   <span class="countdown-lbl-clean">DAYS</span>
+                  <div class="countdown-progress-track"><div class="progress-fill fill-blue"></div></div>
                 </div>
-                <div class="countdown-box-clean">
-                  <span id="cdHours" class="countdown-val-clean val-red">12</span>
+                <div class="countdown-box-clean card-red">
+                  <div class="countdown-glow-line"></div>
+                  <span id="cdHours" class="countdown-val-clean val-red">03</span>
                   <span class="countdown-lbl-clean">HOURS</span>
+                  <div class="countdown-progress-track"><div class="progress-fill fill-red"></div></div>
                 </div>
-                <div class="countdown-box-clean">
-                  <span id="cdMins" class="countdown-val-clean val-yellow">39</span>
+                <div class="countdown-box-clean card-yellow">
+                  <div class="countdown-glow-line"></div>
+                  <span id="cdMins" class="countdown-val-clean val-yellow">37</span>
                   <span class="countdown-lbl-clean">MINUTES</span>
+                  <div class="countdown-progress-track"><div class="progress-fill fill-yellow"></div></div>
                 </div>
-                <div class="countdown-box-clean">
-                  <span id="cdSecs" class="countdown-val-clean val-green">18</span>
+                <div class="countdown-box-clean card-green">
+                  <div class="countdown-glow-line"></div>
+                  <span id="cdSecs" class="countdown-val-clean val-green">13</span>
                   <span class="countdown-lbl-clean">SECONDS</span>
+                  <div class="countdown-progress-track"><div class="progress-fill fill-green"></div></div>
                 </div>
               </div>
             </div>
 
-            <!-- High-Impact Action CTAs -->
+            <!-- High-Impact Action CTAs & Social Proof -->
             <div class="hero-actions-clean">
-              <button class="btn btn-primary open-reg-modal-btn">
+              <button class="btn btn-primary open-reg-modal-btn hero-cta-btn">
+                <span class="btn-shimmer-sweep"></span>
                 <span>Register for Events</span>
                 <span class="btn-sparkle">✨</span>
               </button>
-              <a href="#oracle" class="btn btn-secondary">
+              <a href="#oracle" class="btn btn-secondary hero-ai-btn">
+                <span class="ai-star-icon">✦</span>
                 <span>Ask Gemini AI</span>
-                <span style="color:#4285f4;">✦</span>
               </a>
-              <a href="#schedule" class="btn btn-outline">
+              <a href="#schedule" class="btn btn-outline hero-sched-btn">
                 <span>Explore Schedule</span>
-                <span>↓</span>
+                <span class="btn-arrow-down">↓</span>
               </a>
             </div>
 
-            <!-- Quick Telemetry Row -->
-            <div class="hero-quick-metrics">
-              <span class="hero-metric-item">
-                <span style="color:#4285f4;">●</span> <strong>1,500+</strong> Attendees
-              </span>
-              <span class="hero-metric-item">
-                <span style="color:#ea4335;">●</span> <strong>30+</strong> Masterclasses
-              </span>
-              <span class="hero-metric-item">
-                <span style="color:#fbbc04;">●</span> <strong>₹2,50,000+</strong> Prize Pool
-              </span>
-              <span class="hero-metric-item">
-                <span style="color:#34a853;">●</span> <strong>24h</strong> Hack Sprint
-              </span>
+            <!-- Attendee Social Proof & Live Telemetry Dock Ribbon -->
+            <div class="hero-dock-ribbon">
+              <div class="hero-attendee-stack">
+                <div class="attendee-avatar-group">
+                  <span class="mini-avatar av-1">GD</span>
+                  <span class="mini-avatar av-2">AI</span>
+                  <span class="mini-avatar av-3">K8</span>
+                  <span class="mini-avatar av-4">FL</span>
+                </div>
+                <div class="attendee-stack-meta">
+                  <span class="stack-highlight">1,500+ Builders Registered</span>
+                  <span class="stack-sub">45+ Colleges Across India</span>
+                </div>
+              </div>
+              <div class="hero-dock-divider" aria-hidden="true"></div>
+              <div class="hero-quick-metrics">
+                <span class="hero-metric-item">
+                  <span class="metric-dot" style="background:#4285f4; box-shadow:0 0 8px #4285f4;"></span> <strong>30+</strong> Talks
+                </span>
+                <span class="hero-metric-item">
+                  <span class="metric-dot" style="background:#fbbc04; box-shadow:0 0 8px #fbbc04;"></span> <strong>₹2.5L+</strong> Pool
+                </span>
+                <span class="hero-metric-item">
+                  <span class="metric-dot" style="background:#34a853; box-shadow:0 0 8px #34a853;"></span> <strong>24h</strong> Sprint
+                </span>
+              </div>
             </div>
           </div>
 
           <!-- Right Column: The 3D UI Sphere Floating Showcase -->
           <div class="hero-sphere-showcase-deck">
+            <!-- Holographic Gyroscope Reticle Ring (Atmospheric 3D Background) -->
+            <div class="sphere-orbital-decor" aria-hidden="true">
+              <div class="orbital-ring ring-outer"></div>
+              <div class="orbital-ring ring-inner"></div>
+              <div class="orbital-crosshair-h"></div>
+              <div class="orbital-crosshair-v"></div>
+            </div>
+
             <!-- 3D Interactive Canvas Stage -->
             <div class="sphere-canvas-viewport" id="sphereCanvasWrap" title="Click and drag to spin 3D particle sphere">
               <canvas id="uiSphereHeroCanvas"></canvas>
@@ -162,6 +199,16 @@
               <div class="sphere-floating-chip chip-sprint">
                 <span class="chip-icon">🚀</span>
                 <span>24h HACK SPRINT</span>
+              </div>
+              <div class="sphere-floating-chip chip-venue">
+                <span class="chip-icon">📍</span>
+                <span>ITER CS LAB 3</span>
+              </div>
+
+              <!-- Interactive Drag Hint -->
+              <div class="sphere-drag-hint">
+                <span class="drag-hint-icon">✦</span>
+                <span>DRAG TO ROTATE IN 3D • CLICK TO SHOCKWAVE</span>
               </div>
 
               <!-- Interactive Controls Overlay -->
@@ -1347,6 +1394,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <!-- Application Module Script -->
-  <script type="module" src="js/app.js?v=2.8"></script>
+  <script type="module" src="js/app.js?v=3.6"></script>
 </body>
 </html>

@@ -9,11 +9,11 @@
 
 /* --- Root Color & Spacing Tokens --- */
 :root {
-  /* Slate Obsidian Theme (Rich, Deep, Atmospheric Dark) */
-  --bg-primary: #0b0f19;
-  --bg-surface: #111827;
-  --bg-elevated: #1a2234;
-  --bg-subtle: #232d42;
+  /* Slate Obsidian Theme (Deep Starry Midnight Obsidian) */
+  --bg-primary: #080c16;
+  --bg-surface: #0e1526;
+  --bg-elevated: #152038;
+  --bg-subtle: #1c2a4a;
   --bg-contrast: #ffffff;
 
   --border-hairline: rgba(255, 255, 255, 0.08);
@@ -23,7 +23,7 @@
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --text-inverse: #0b0f19;
+  --text-inverse: #080c16;
 
   /* Official Google Ecosystem Identity */
   --accent-blue: #4285f4;
@@ -41,6 +41,14 @@
   --accent-green: #34a853;
   --accent-green-subtle: rgba(52, 168, 83, 0.14);
   --accent-green-border: rgba(52, 168, 83, 0.4);
+
+  /* Shadows & Glows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 40px -8px rgba(0, 0, 0, 0.6);
+  --card-glass-bg: rgba(14, 21, 38, 0.72);
+  --card-glass-border: rgba(255, 255, 255, 0.09);
+  --card-glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 
   /* Typography Stacks */
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -71,38 +79,45 @@
   --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Light / Architectural Parchment Mode */
+/* Light / Studio Porcelain Editorial Mode */
 [data-theme="light"] {
-  --bg-primary: #f6f5f0;
+  --bg-primary: #f8fafc;
   --bg-surface: #ffffff;
-  --bg-elevated: #eae7de;
-  --bg-subtle: #ded9cd;
-  --bg-contrast: #11141c;
+  --bg-elevated: #f1f5f9;
+  --bg-subtle: #e2e8f0;
+  --bg-contrast: #0b0f19;
 
-  --border-hairline: #e0dcd1;
-  --border-strong: #c8c2b3;
-  --border-focus: #404a60;
+  --border-hairline: rgba(15, 23, 42, 0.08);
+  --border-strong: rgba(15, 23, 42, 0.16);
+  --border-focus: #1a73e8;
 
-  --text-primary: #12161f;
-  --text-secondary: #4f5a6d;
-  --text-muted: #7b889b;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
   --text-inverse: #ffffff;
 
-  --accent-blue: #1d4ed8;
-  --accent-blue-subtle: rgba(29, 78, 216, 0.08);
-  --accent-blue-border: rgba(29, 78, 216, 0.25);
+  --accent-blue: #1a73e8;
+  --accent-blue-subtle: rgba(26, 115, 232, 0.08);
+  --accent-blue-border: rgba(26, 115, 232, 0.25);
 
-  --accent-red: #b91c1c;
-  --accent-red-subtle: rgba(185, 28, 28, 0.08);
-  --accent-red-border: rgba(185, 28, 28, 0.25);
+  --accent-red: #d93025;
+  --accent-red-subtle: rgba(217, 48, 37, 0.08);
+  --accent-red-border: rgba(217, 48, 37, 0.25);
 
   --accent-yellow: #b45309;
   --accent-yellow-subtle: rgba(180, 83, 9, 0.08);
   --accent-yellow-border: rgba(180, 83, 9, 0.25);
 
-  --accent-green: #047857;
-  --accent-green-subtle: rgba(4, 120, 87, 0.08);
-  --accent-green-border: rgba(4, 120, 87, 0.25);
+  --accent-green: #188038;
+  --accent-green-subtle: rgba(24, 128, 56, 0.08);
+  --accent-green-border: rgba(24, 128, 56, 0.25);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 6px 20px -3px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 16px 36px -6px rgba(0, 0, 0, 0.09);
+  --card-glass-bg: rgba(255, 255, 255, 0.92);
+  --card-glass-border: rgba(15, 23, 42, 0.08);
+  --card-glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 /* --- Global Reset & Foundation --- */

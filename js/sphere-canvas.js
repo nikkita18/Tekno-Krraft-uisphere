@@ -319,10 +319,12 @@ export class UiSphereCanvas {
         const pillX = p.x + 12;
         const pillY = p.y - 11;
 
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
         // Floating glass pill badge
-        this.ctx.fillStyle = 'rgba(17, 24, 39, 0.9)';
+        this.ctx.fillStyle = isLight ? 'rgba(255, 255, 255, 0.96)' : 'rgba(14, 21, 38, 0.92)';
         this.ctx.strokeStyle = tag.color;
-        this.ctx.lineWidth = 1;
+        this.ctx.lineWidth = 1.2;
         this.roundRect(pillX, pillY, pillW, pillH, 11);
         this.ctx.fill();
         this.ctx.stroke();
@@ -336,7 +338,7 @@ export class UiSphereCanvas {
         this.ctx.stroke();
 
         // Text
-        this.ctx.fillStyle = '#ffffff';
+        this.ctx.fillStyle = isLight ? '#0f172a' : '#ffffff';
         this.ctx.fillText(tag.text, pillX + 9, pillY + 11);
         this.ctx.restore();
       }
