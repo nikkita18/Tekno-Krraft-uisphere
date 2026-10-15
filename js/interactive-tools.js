@@ -11,8 +11,9 @@ export class InteractiveToolsSuite {
     this.initCampusMap();
     this.initPrizeCalculator();
     this.initDeveloperCli();
-    this.initCardSpotlightHover();
+    this.initCard3DTiltAndSpotlight();
     this.initHolographicPassTilt();
+    this.initScrollReveal();
   }
 
   /* ------------------------------------------------------------------------
@@ -30,15 +31,21 @@ export class InteractiveToolsSuite {
     flipBtn?.addEventListener('click', () => {
       isFlipped = !isFlipped;
       card.classList.toggle('flipped', isFlipped);
-      card.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-      card.style.transform = 'perspective(850px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      card.style.transition = 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+      card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
       card.style.setProperty('--glare-opacity', '0');
+      
+      // Futuristic whoosh sound
+      if (window._soundSynth?.isEnabled) {
+        window._soundSynth.playWhoosh?.();
+      }
+
       flipBtn.innerHTML = isFlipped 
         ? `<svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg> Flip to Front`
         : `<svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg> Flip Pass (Backside)`;
     });
 
-    // 3D Mouse Parallax & Holographic Foil (works seamlessly on Front and Flipped Back Face)
+    // 3D Mouse Parallax & Holographic Foil
     const handleMove = (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -47,16 +54,16 @@ export class InteractiveToolsSuite {
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
       
-      const rotateX = ((y - centerY) / centerY) * -14;
-      const rotateY = ((x - centerX) / centerX) * 14;
+      const rotateX = ((y - centerY) / centerY) * -16;
+      const rotateY = ((x - centerX) / centerX) * 16;
 
       card.style.transition = 'transform 0.08s ease-out';
-      card.style.transform = `perspective(850px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.03, 1.03, 1.03)`;
+      card.style.transform = `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.035, 1.035, 1.035)`;
       
       // Update holographic foil reflection gradient angle & spotlight coordinates
       const glareAngle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI) + 90;
       card.style.setProperty('--glare-angle', `${glareAngle.toFixed(1)}deg`);
-      card.style.setProperty('--glare-opacity', '0.88');
+      card.style.setProperty('--glare-opacity', '0.92');
       card.style.setProperty('--mouse-x', `${x.toFixed(1)}px`);
       card.style.setProperty('--mouse-y', `${y.toFixed(1)}px`);
     };
@@ -66,8 +73,8 @@ export class InteractiveToolsSuite {
     };
 
     const handleLeave = () => {
-      card.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)';
-      card.style.transform = 'perspective(850px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      card.style.transition = 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+      card.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
       card.style.setProperty('--glare-opacity', '0');
     };
 
@@ -77,17 +84,33 @@ export class InteractiveToolsSuite {
   }
 
   /* ------------------------------------------------------------------------
-     2. CARD SPOTLIGHT HOVER (Cursor-following radial highlight)
+     2. UNIVERSAL 3D CARD TILT & CURSOR SPOTLIGHT HOVER
      ------------------------------------------------------------------------ */
-  initCardSpotlightHover() {
-    const cards = document.querySelectorAll('.session-card, .feature-box, .speaker-card, .prize-card, .track-workbench, .venue-guide-box, .digital-pass-card');
+  initCard3DTiltAndSpotlight() {
+    const cards = document.querySelectorAll(
+      '.session-card, .feature-box, .speaker-card, .prize-card, .track-workbench, .venue-guide-box, .countdown-box-clean, .metric-cell, .radiant-prompt-container'
+    );
+
     cards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
+        
         card.style.setProperty('--mouse-x', `${x}px`);
         card.style.setProperty('--mouse-y', `${y}px`);
+
+        // Subtle 3D tilt calculation
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const rotX = ((y - cy) / cy) * -6.5;
+        const rotY = ((x - cx) / cx) * 6.5;
+
+        card.style.transform = `perspective(800px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-4px) scale3d(1.015, 1.015, 1.015)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0) scale3d(1, 1, 1)';
       });
     });
 
@@ -101,6 +124,27 @@ export class InteractiveToolsSuite {
     window.addEventListener('mousemove', (e) => {
       spotlight.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
     }, { passive: true });
+  }
+
+  /* ------------------------------------------------------------------------
+     3. SMOOTH 3D PERSPECTIVE SCROLL REVEAL
+     ------------------------------------------------------------------------ */
+  initScrollReveal() {
+    const revealElements = document.querySelectorAll(
+      '.hero-editorial-deck, .countdown-wrapper-clean, .hero-sphere-showcase-deck, .metric-cell, .feature-box, .section-header, .track-workbench, .speaker-card, .prize-card, .venue-guide-box'
+    );
+
+    revealElements.forEach(el => el.classList.add('reveal-3d-init'));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-3d-active');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealElements.forEach(el => observer.observe(el));
   }
 
   /* ------------------------------------------------------------------------

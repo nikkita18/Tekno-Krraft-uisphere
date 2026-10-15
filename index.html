@@ -14,17 +14,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="src/shaders/threeui.css?v=3.5" />
-  <link rel="stylesheet" href="styles/main.css?v=3.6" />
-  <link rel="stylesheet" href="styles/components.css?v=3.6" />
-  <link rel="stylesheet" href="styles/radiant-gdg.css?v=3.6" />
-  <link rel="stylesheet" href="styles/interactive-suite.css?v=3.6" />
-  <link rel="stylesheet" href="styles/clean-theme.css?v=3.6" />
-  <link rel="stylesheet" href="styles/top-dock.css?v=3.6" />
+  <link rel="stylesheet" href="src/shaders/threeui.css?v=3.8" />
+  <link rel="stylesheet" href="styles/main.css?v=3.8" />
+  <link rel="stylesheet" href="styles/components.css?v=3.8" />
+  <link rel="stylesheet" href="styles/radiant-gdg.css?v=3.8" />
+  <link rel="stylesheet" href="styles/interactive-suite.css?v=3.8" />
+  <link rel="stylesheet" href="styles/clean-theme.css?v=3.8" />
+  <link rel="stylesheet" href="styles/top-dock.css?v=3.8" />
 </head>
 <body>
 
-  <!-- Ambient GDG Lighting Mesh -->
+  <!-- Ambient Cosmic Starfield Canvas & GDG Lighting Mesh -->
+  <canvas id="ambientCosmicCanvas" class="ambient-cosmic-canvas" aria-hidden="true"></canvas>
   <div class="gdg-ambient-glow glow-blue"></div>
   <div class="gdg-ambient-glow glow-red"></div>
   <div class="gdg-ambient-glow glow-yellow"></div>
@@ -216,6 +217,7 @@
                 <button type="button" class="sphere-mode-btn active" data-mode="fibonacci">✦ Fibonacci</button>
                 <button type="button" class="sphere-mode-btn" data-mode="constellation">🌐 Constellation</button>
                 <button type="button" class="sphere-mode-btn" data-mode="quantum">⚛️ Quantum</button>
+                <button type="button" class="sphere-mode-btn" data-mode="singularity">✨ Singularity</button>
               </div>
             </div>
           </div>
@@ -1394,6 +1396,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <!-- Application Module Script -->
-  <script type="module" src="js/app.js?v=3.6"></script>
+  <script type="module" src="js/app.js?v=3.8"></script>
 </body>
 </html>

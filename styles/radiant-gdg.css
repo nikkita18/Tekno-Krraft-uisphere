@@ -26,35 +26,59 @@
 }
 
 .glow-blue {
-  width: 500px;
-  height: 500px;
+  width: 550px;
+  height: 550px;
   background: #4285f4;
   top: -100px;
   left: 10%;
+  animation: floatAmbientBlue 16s ease-in-out infinite alternate;
 }
 
 .glow-red {
-  width: 400px;
-  height: 400px;
+  width: 450px;
+  height: 450px;
   background: #ea4335;
-  top: 20%;
+  top: 25%;
   right: 5%;
+  animation: floatAmbientRed 19s ease-in-out infinite alternate;
 }
 
 .glow-yellow {
-  width: 450px;
-  height: 450px;
+  width: 500px;
+  height: 500px;
   background: #fbbc04;
-  bottom: 15%;
-  left: 15%;
+  bottom: 18%;
+  left: 12%;
+  animation: floatAmbientYellow 22s ease-in-out infinite alternate;
 }
 
 .glow-green {
-  width: 420px;
-  height: 420px;
+  width: 480px;
+  height: 480px;
   background: #34a853;
-  bottom: 5%;
-  right: 20%;
+  bottom: 8%;
+  right: 15%;
+  animation: floatAmbientGreen 18s ease-in-out infinite alternate;
+}
+
+@keyframes floatAmbientBlue {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.16; }
+  100% { transform: translate(60px, 40px) scale(1.15); opacity: 0.24; }
+}
+
+@keyframes floatAmbientRed {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.14; }
+  100% { transform: translate(-50px, 50px) scale(1.2); opacity: 0.22; }
+}
+
+@keyframes floatAmbientYellow {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.12; }
+  100% { transform: translate(40px, -60px) scale(1.18); opacity: 0.2; }
+}
+
+@keyframes floatAmbientGreen {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.14; }
+  100% { transform: translate(-40px, -40px) scale(1.15); opacity: 0.22; }
 }
 
 /* --------------------------------------------------------------------------

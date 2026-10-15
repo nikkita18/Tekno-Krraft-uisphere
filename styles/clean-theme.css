@@ -16,6 +16,40 @@
   }
 }
 
+/* --- Smooth Scrolling & Global Section Anchor Offsets --- */
+html {
+  scroll-behavior: smooth;
+}
+
+section, [id] {
+  scroll-margin-top: 105px;
+}
+
+/* Ambient Cosmic Starfield Background Canvas */
+.ambient-cosmic-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+}
+
+/* 3D Perspective Scroll Reveal Transition States */
+.reveal-3d-init {
+  opacity: 0;
+  transform: perspective(1000px) translateY(36px) rotateX(4deg) scale(0.97);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-3d-active {
+  opacity: 1 !important;
+  transform: perspective(1000px) translateY(0) rotateX(0deg) scale(1) !important;
+}
+
 /* --- Atmospheric Cosmic Background with Multi-Stop Glowing Nebulas --- */
 body {
   background-color: var(--bg-primary);
@@ -50,7 +84,7 @@ body {
   margin-left: -300px;
   border-radius: 50%;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(66, 133, 244, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(66, 133, 244, 0.09) 0%, transparent 70%);
   z-index: 9999;
   transition: transform 0.12s ease-out;
   opacity: 0.8;
@@ -378,13 +412,24 @@ body {
   min-width: 86px;
   padding: 10px 15px 8px 15px;
   background: var(--card-glass-bg);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
   border: 1px solid var(--card-glass-border);
   border-radius: 16px;
   box-shadow: var(--shadow-md), var(--card-glass-highlight);
   position: relative;
   overflow: hidden;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.countdown-box-clean::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, transparent 100%);
+  pointer-events: none;
 }
 
 .countdown-glow-line {
@@ -394,6 +439,7 @@ body {
   right: 0;
   height: 3px;
   opacity: 0.95;
+  z-index: 2;
 }
 
 .card-blue .countdown-glow-line { background: #4285f4; box-shadow: 0 0 12px #4285f4; }
@@ -1023,20 +1069,24 @@ body {
 
 .sphere-mode-btn {
   background: transparent;
-  border: none;
+  border: 1px solid transparent;
   color: var(--text-secondary);
   font-family: var(--font-sans);
   font-size: 0.72rem;
   font-weight: 600;
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: var(--radius-full);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .sphere-mode-btn:hover {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
 }
 
 [data-theme="light"] .sphere-mode-btn {
@@ -1050,16 +1100,34 @@ body {
 
 .sphere-mode-btn.active {
   color: #ffffff;
-  background: rgba(66, 133, 244, 0.35);
-  border: 1px solid rgba(66, 133, 244, 0.5);
-  box-shadow: 0 0 12px rgba(66, 133, 244, 0.3);
+  background: rgba(66, 133, 244, 0.28);
+  border-color: rgba(66, 133, 244, 0.6);
+  box-shadow: 0 0 16px rgba(66, 133, 244, 0.35);
+}
+
+.sphere-mode-btn[data-mode="constellation"].active {
+  background: rgba(52, 168, 83, 0.28);
+  border-color: rgba(52, 168, 83, 0.6);
+  box-shadow: 0 0 16px rgba(52, 168, 83, 0.35);
+}
+
+.sphere-mode-btn[data-mode="quantum"].active {
+  background: rgba(234, 67, 53, 0.28);
+  border-color: rgba(234, 67, 53, 0.6);
+  box-shadow: 0 0 16px rgba(234, 67, 53, 0.35);
+}
+
+.sphere-mode-btn[data-mode="singularity"].active {
+  background: rgba(251, 188, 4, 0.28);
+  border-color: rgba(251, 188, 4, 0.6);
+  box-shadow: 0 0 16px rgba(251, 188, 4, 0.35);
 }
 
 [data-theme="light"] .sphere-mode-btn.active {
   color: #1a73e8;
   background: rgba(26, 115, 232, 0.12);
-  border: 1px solid rgba(26, 115, 232, 0.35);
-  box-shadow: 0 2px 8px rgba(26, 115, 232, 0.15);
+  border-color: rgba(26, 115, 232, 0.4);
+  box-shadow: 0 2px 10px rgba(26, 115, 232, 0.2);
 }
 
 /* ==========================================================================
@@ -1417,21 +1485,22 @@ body {
 .digital-pass-card::after {
   content: '';
   position: absolute;
-  inset: -50%;
+  inset: -60%;
   border-radius: 22px;
   background: linear-gradient(
     var(--glare-angle, 115deg),
-    transparent 15%,
-    rgba(66, 133, 244, 0.4) 32%,
-    rgba(234, 67, 53, 0.4) 45%,
-    rgba(251, 188, 4, 0.4) 55%,
-    rgba(52, 168, 83, 0.4) 68%,
-    transparent 85%
+    transparent 10%,
+    rgba(255, 0, 128, 0.35) 24%,
+    rgba(66, 133, 244, 0.45) 38%,
+    rgba(52, 168, 83, 0.45) 52%,
+    rgba(251, 188, 4, 0.45) 66%,
+    rgba(234, 67, 53, 0.4) 80%,
+    transparent 92%
   );
   opacity: var(--glare-opacity, 0);
   pointer-events: none;
   transition: opacity 0.25s ease;
-  mix-blend-mode: screen;
+  mix-blend-mode: color-dodge;
   z-index: 12;
 }
 

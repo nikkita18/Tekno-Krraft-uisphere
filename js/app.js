@@ -9,6 +9,7 @@ import { SoundSynthesizer } from './sound-effects.js';
 import { InteractiveToolsSuite } from './interactive-tools.js?v=2.8';
 import { RadiantAssistant } from './radiant-assistant.js';
 import { AnimatedTopDock } from '../src/shaders/animated-top-dock/AnimatedTopDock.js';
+import { AmbientCosmicCanvas } from './ambient-canvas.js';
 
 class TeknoKrraftApp {
   constructor() {
@@ -46,8 +47,9 @@ class TeknoKrraftApp {
     // 2. Event Launch Countdown Timer (Oct 16, 2026, 09:30 AM IST)
     this.initCountdown();
 
-    // 3. Audio Synthesizer & 3D Interactive Canvas
+    // 3. Audio Synthesizer, Ambient Canvas & 3D Interactive Sphere Canvas
     this.soundSynth = new SoundSynthesizer();
+    this.ambientCanvas = new AmbientCosmicCanvas('ambientCosmicCanvas');
     this.sphereCanvas = new UiSphereCanvas('uiSphereHeroCanvas');
 
     // 4. Radiant Gemini Prompt Input Assistant
