@@ -15,12 +15,15 @@
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="src/shaders/threeui.css?v=3.8" />
-  <link rel="stylesheet" href="styles/main.css?v=3.8" />
-  <link rel="stylesheet" href="styles/components.css?v=3.8" />
-  <link rel="stylesheet" href="styles/radiant-gdg.css?v=3.8" />
-  <link rel="stylesheet" href="styles/interactive-suite.css?v=3.8" />
-  <link rel="stylesheet" href="styles/clean-theme.css?v=3.8" />
-  <link rel="stylesheet" href="styles/top-dock.css?v=3.8" />
+  <link rel="stylesheet" href="styles/main.css?v=9.0" />
+  <link rel="stylesheet" href="styles/components.css?v=9.0" />
+  <link rel="stylesheet" href="styles/radiant-gdg.css?v=9.0" />
+  <link rel="stylesheet" href="styles/interactive-suite.css?v=9.0" />
+  <link rel="stylesheet" href="styles/clean-theme.css?v=9.0" />
+  <link rel="stylesheet" href="styles/top-dock.css?v=9.0" />
+  <link rel="stylesheet" href="styles/schedule-stack.css?v=11.0" />
+  <link rel="stylesheet" href="styles/speakers-3d.css?v=10.0" />
+  <link rel="stylesheet" href="styles/gsap-scroll.css?v=9.0" />
 </head>
 <body>
 
@@ -724,15 +727,15 @@
     </section>
 
     <!-- =========================================================================
-         6. 3-DAY INTERACTIVE EVENT SCHEDULE
+         6. 3-DAY INTERACTIVE EVENT SCHEDULE (3D CASE STUDY FLIP STACK)
          ========================================================================= -->
-    <section class="section" id="schedule">
+    <section class="section schedule-flip-section" id="schedule">
       <div class="container">
         <div class="section-header">
           <div class="section-meta-tag">&lt; 3-DAY INTERACTIVE EVENT SCHEDULE /&gt;</div>
           <h2 class="section-title">Plan Your Fest Journey</h2>
           <p class="section-desc">
-            Explore keynotes, hands-on workshops, competitive coding, and the 24-hour hack sprint. Bookmark sessions to curate your personal itinerary and export to your calendar.
+            Explore keynotes, hands-on workshops, competitive coding, and the 24-hour hack sprint. Scroll to fold and reveal sessions in 3D, or switch days and filter categories.
           </p>
         </div>
 
@@ -776,29 +779,89 @@
 
         <div class="schedule-results-meta">
           <span id="scheduleCountMeta">Displaying 7 sessions on Day 01</span>
-          <button class="btn btn-outline btn-sm itinerary-toggle-btn">
-            View My Itinerary Drawer
-          </button>
+          <div class="schedule-view-actions">
+            <div class="schedule-view-mode-toggle" id="scheduleViewModeToggle">
+              <button class="view-mode-btn active" data-mode="stack" title="3D Flip Stack Experience">
+                <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                <span>3D Flip Stack</span>
+              </button>
+              <button class="view-mode-btn" data-mode="list" title="Classic Timeline List">
+                <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                <span>Timeline List</span>
+              </button>
+            </div>
+            <button class="btn btn-outline btn-sm itinerary-toggle-btn">
+              View My Itinerary Drawer
+            </button>
+          </div>
         </div>
+      </div>
 
+      <!-- Componentry Case Study Flip Stack Track for Schedule -->
+      <div class="schedule-flip-track" id="scheduleFlipTrack">
+        <div class="schedule-flip-sticky-frame" id="scheduleFlipStickyFrame">
+          
+          <!-- Flip Stack HUD Toolbar -->
+          <div class="schedule-flip-hud" id="scheduleFlipHud">
+            <div class="flip-hud-left">
+              <span class="schedule-badge-3d" id="scheduleBadge3d">
+                <span class="pulse-dot"></span>
+                <span id="scheduleHudDayLabel">Day 01 Sessions Deck</span>
+              </span>
+              <div class="flip-stack-counter">
+                <span class="flip-current-num" id="scheduleCurrentNum">01</span>
+                <span style="opacity:0.4;">/</span>
+                <span id="scheduleTotalNum">07</span>
+              </div>
+              <div class="flip-stack-progress-bar">
+                <div class="flip-stack-progress-fill" id="scheduleProgressFill"></div>
+              </div>
+            </div>
+
+            <div class="flip-hud-hint">
+              <span class="hint-arrow">↓</span>
+              <span>SCROLL TO FOLD &amp; REVEAL NEXT</span>
+              <span class="hint-arrow">↓</span>
+            </div>
+
+            <div class="flip-hud-right">
+              <div class="flip-stack-dots" id="scheduleFlipDots"></div>
+              <div class="schedule-nav-btns">
+                <button class="schedule-nav-btn" id="schedulePrevBtn" aria-label="Previous Session" title="Previous Session">
+                  <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button class="schedule-nav-btn" id="scheduleNextBtn" aria-label="Next Session" title="Next Session">
+                  <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3D Perspective Flip Stage -->
+          <div class="schedule-flip-stage" id="scheduleFlipStage"></div>
+        </div>
+      </div>
+
+      <!-- Classic Timeline List Container (Visible when toggled to List mode) -->
+      <div class="container schedule-timeline-container" id="scheduleTimelineContainer" style="display: none;">
         <div class="schedule-timeline-list" id="scheduleTimelineList"></div>
       </div>
     </section>
 
     <!-- =========================================================================
-         7. KEYNOTE SPEAKERS & MENTORS
+         7. KEYNOTE SPEAKERS & MENTORS (3D SPATIAL ORBIT STAGE)
          ========================================================================= -->
     <section class="section" id="speakers">
       <div class="container">
         <div class="section-header">
-          <div class="section-meta-tag">&lt; KEYNOTE SPEAKERS & MENTORS /&gt;</div>
+          <div class="section-meta-tag">&lt; KEYNOTE SPEAKERS &amp; MENTORS /&gt;</div>
           <h2 class="section-title">Learn from Industry Leaders</h2>
           <p class="section-desc">
-            Distinguished Google Developer Experts (GDEs), cloud architects, and tech leads sharing insights. Click any profile to view their detailed technical dossier and scheduled sessions.
+            Distinguished Google Developer Experts (GDEs), cloud architects, and tech leads sharing insights. Scroll, drag, or auto-orbit to explore the speaker deck.
           </p>
         </div>
 
-        <div class="speakers-grid" id="speakersGrid"></div>
+        <div id="speakersGrid"></div>
       </div>
     </section>
 
@@ -1396,6 +1459,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <!-- Application Module Script -->
-  <script type="module" src="js/app.js?v=3.8"></script>
+  <script type="module" src="js/app.js?v=11.0"></script>
 </body>
 </html>

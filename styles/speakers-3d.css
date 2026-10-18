@@ -1,0 +1,625 @@
+/* ==========================================================================
+   TEKNO KRRAFT 2026 - 3D SPATIAL SCROLLABLE SPEAKERS & MENTORS CAROUSEL
+   Implements 3D coverflow perspective, smooth momentum drag/wheel scrolling,
+   dynamic track lighting, holographic cards, and parallax tilt.
+   ========================================================================== */
+
+.speakers-3d-container {
+  position: relative;
+  width: 100%;
+  margin-top: 2rem;
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   1. 3D STAGE TOOLBAR / HUD
+   -------------------------------------------------------------------------- */
+.speakers-3d-hud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  background: rgba(18, 24, 38, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 20;
+}
+
+[data-theme="light"] .speakers-3d-hud {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.speakers-hud-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.speakers-badge-3d {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4285f4;
+  background: rgba(66, 133, 244, 0.12);
+  border: 1px solid rgba(66, 133, 244, 0.35);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.speakers-badge-3d .pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4285f4;
+  box-shadow: 0 0 10px #4285f4;
+  animation: pulseBeacon 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseBeacon {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.speakers-counter-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.speakers-current-num {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  min-width: 26px;
+}
+
+.speakers-active-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  padding-left: 10px;
+  border-left: 1px solid var(--border-hairline);
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.25s ease;
+}
+
+.speakers-hud-center {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.speakers-stepper-track {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-hairline);
+}
+
+[data-theme="light"] .speakers-stepper-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.speaker-step-dot {
+  width: 28px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.speaker-step-dot:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.speaker-step-dot.active {
+  color: #fff;
+  background: #4285f4;
+  border-color: rgba(66, 133, 244, 0.6);
+  box-shadow: 0 0 12px rgba(66, 133, 244, 0.5);
+}
+
+.speakers-hud-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.speakers-nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.speakers-nav-btn:hover {
+  background: #4285f4;
+  color: #fff;
+  border-color: #4285f4;
+  transform: scale(1.08);
+  box-shadow: 0 0 16px rgba(66, 133, 244, 0.4);
+}
+
+.speakers-nav-btn:active {
+  transform: scale(0.95);
+}
+
+.speakers-orbit-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.speakers-orbit-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.speakers-orbit-toggle.active {
+  background: rgba(52, 168, 83, 0.18);
+  border-color: rgba(52, 168, 83, 0.6);
+  color: #34a853;
+  box-shadow: 0 0 16px rgba(52, 168, 83, 0.25);
+}
+
+.orbit-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+  display: inline-block;
+  animation: pulseBeacon 1.8s infinite ease-in-out;
+}
+
+/* --------------------------------------------------------------------------
+   2. 3D PERSPECTIVE STAGE & TRACK
+   -------------------------------------------------------------------------- */
+.speakers-3d-stage {
+  position: relative;
+  width: 100%;
+  height: 570px;
+  min-height: 570px;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+  padding: 20px 0;
+  margin: 0 auto;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.speakers-3d-stage:active {
+  cursor: grabbing;
+}
+
+/* Ambient glow spotlight behind the stage */
+.speakers-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(66, 133, 244, 0.22) 0%, rgba(234, 67, 53, 0.1) 45%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 1;
+  transition: background 0.6s ease;
+}
+
+/* Cyber floor depth grid line */
+.speakers-floor-grid {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to top, rgba(66, 133, 244, 0.05), transparent);
+  mask-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.speakers-3d-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  z-index: 10;
+}
+
+/* --------------------------------------------------------------------------
+   3. 3D SPEAKER CARD
+   -------------------------------------------------------------------------- */
+.speaker-card-3d {
+  position: absolute;
+  width: 360px;
+  height: 480px;
+  max-height: 480px;
+  background: rgba(18, 24, 38, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform-style: preserve-3d;
+  will-change: transform, opacity, filter;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] .speaker-card-3d {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
+}
+
+/* Top Neon Gradient Accent Ribbon */
+.speaker-card-accent-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #4285f4, #ea4335, #fbbc04, #34a853);
+  opacity: 0.7;
+  transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.speaker-card-3d.is-active .speaker-card-accent-line {
+  opacity: 1;
+  height: 5px;
+  box-shadow: 0 0 16px rgba(66, 133, 244, 0.6);
+}
+
+/* Dynamic Track Specific Colors */
+.speaker-card-3d[data-track-type="cloud"] .speaker-card-accent-line {
+  background: linear-gradient(90deg, #4285f4, #3b82f6);
+}
+.speaker-card-3d[data-track-type="ai"] .speaker-card-accent-line {
+  background: linear-gradient(90deg, #fbbc04, #ea4335);
+}
+.speaker-card-3d[data-track-type="mobile"] .speaker-card-accent-line {
+  background: linear-gradient(90deg, #34a853, #10b981);
+}
+.speaker-card-3d[data-track-type="security"] .speaker-card-accent-line {
+  background: linear-gradient(90deg, #ea4335, #f43f5e);
+}
+.speaker-card-3d[data-track-type="web"] .speaker-card-accent-line {
+  background: linear-gradient(90deg, #3b82f6, #a855f7);
+}
+
+/* Active State Highlighting */
+.speaker-card-3d.is-active {
+  border-color: rgba(66, 133, 244, 0.55);
+  box-shadow: 0 28px 65px rgba(0, 0, 0, 0.6), 0 0 28px rgba(66, 133, 244, 0.25);
+}
+
+[data-theme="light"] .speaker-card-3d.is-active {
+  border-color: rgba(66, 133, 244, 0.55);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.15), 0 0 25px rgba(66, 133, 244, 0.2);
+}
+
+/* Holographic Specular Glare Overlay */
+.speaker-card-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  border-radius: 20px;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.speaker-card-3d:hover .speaker-card-glare {
+  opacity: 1;
+}
+
+/* Card Header & Avatar */
+.speaker-3d-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.speaker-avatar-wrap {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  flex-shrink: 0;
+}
+
+.speaker-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.speaker-card-3d.is-active .speaker-avatar-img {
+  border-color: #4285f4;
+  box-shadow: 0 0 18px rgba(66, 133, 244, 0.35);
+}
+
+.speaker-avatar-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 18px;
+  border: 1.5px dashed rgba(66, 133, 244, 0.5);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 12s linear;
+}
+
+.speaker-card-3d.is-active .speaker-avatar-ring {
+  opacity: 1;
+  animation: rotateRing 15s linear infinite;
+}
+
+@keyframes rotateRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.speaker-headings-3d {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.speaker-name-3d {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.speaker-role-3d {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #4285f4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.speaker-org-3d {
+  font-family: var(--font-mono);
+  font-size: 0.70rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Badges Row */
+.speaker-tags-row-3d {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 8px;
+}
+
+/* Bio Preview */
+.speaker-bio-3d {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 4px 0 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Sessions Mini Chips */
+.speaker-sessions-preview-3d {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.sessions-preview-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 5px;
+}
+
+.session-chip-item {
+  font-size: 0.74rem;
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-hairline);
+  padding: 5px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+
+[data-theme="light"] .session-chip-item {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* Card Footer CTA */
+.speaker-card-footer-3d {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  margin-top: 6px;
+  border-top: 1px dashed var(--border-hairline);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #4285f4;
+  transition: color 0.2s ease;
+}
+
+.speaker-card-footer-3d .cta-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(66, 133, 244, 0.12);
+  border: 1px solid rgba(66, 133, 244, 0.3);
+  transition: all 0.25s ease;
+}
+
+.speaker-card-3d:hover .speaker-card-footer-3d .cta-arrow {
+  background: #4285f4;
+  color: #fff;
+  transform: translateX(4px);
+  box-shadow: 0 0 12px rgba(66, 133, 244, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   4. INTERACTIVE DRAG & SCROLL INSTRUCTION BANNER
+   -------------------------------------------------------------------------- */
+.speakers-interaction-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.speakers-interaction-hint .hint-keys {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.speakers-interaction-hint kbd {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-hairline);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .speakers-interaction-hint kbd {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* --------------------------------------------------------------------------
+   5. RESPONSIVE OPTIMIZATIONS
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .speakers-3d-stage {
+    height: 530px;
+    min-height: 530px;
+  }
+  .speaker-card-3d {
+    width: 290px;
+    height: 440px;
+    max-height: 440px;
+    padding: 16px;
+  }
+  .speaker-avatar-wrap {
+    width: 52px;
+    height: 52px;
+  }
+  .speaker-name-3d {
+    font-size: 1.05rem;
+  }
+  .speaker-bio-3d {
+    font-size: 0.78rem;
+    -webkit-line-clamp: 2;
+  }
+  .speakers-active-name {
+    display: none;
+  }
+  .speakers-hud-center {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+}

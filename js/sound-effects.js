@@ -70,6 +70,30 @@ export class SoundSynthesizer {
     } catch {}
   }
 
+  playBlip() {
+    if (!this.isEnabled) return;
+    this.ensureContext();
+    if (!this.ctx) return;
+
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(880, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(440, this.ctx.currentTime + 0.035);
+
+      gain.gain.setValueAtTime(0.06, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.035);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.035);
+    } catch {}
+  }
+
   playWhoosh() {
     if (!this.isEnabled) return;
     this.ensureContext();

@@ -9,7 +9,9 @@ import { SoundSynthesizer } from './sound-effects.js';
 import { InteractiveToolsSuite } from './interactive-tools.js?v=2.8';
 import { RadiantAssistant } from './radiant-assistant.js';
 import { AnimatedTopDock } from '../src/shaders/animated-top-dock/AnimatedTopDock.js';
-import { AmbientCosmicCanvas } from './ambient-canvas.js';
+import { AmbientCosmicCanvas } from './ambient-canvas.js?v=4.2';
+import { ScheduleFlipStack } from './schedule-flip-stack.js?v=11.0';
+import { Speakers3DScroller } from './speakers-3d.js?v=10.0';
 
 class TeknoKrraftApp {
   constructor() {
@@ -25,6 +27,9 @@ class TeknoKrraftApp {
     this.toolsSuite = null;
     this.radiantAssistant = null;
     this.topDock = null;
+    this.speakersData = SPEAKERS_DATA;
+    this.scheduleFlip = null;
+    this.speakersScroller = null;
 
     this.init();
   }
@@ -67,10 +72,10 @@ class TeknoKrraftApp {
     this.renderFaqs();
     this.renderSponsors();
 
-    // 7. Interactive Tools (3D Pass Tilt, Card Spotlight, Campus Blueprint, Prize Calculator, CLI Shell)
+    // 8. Interactive Tools (3D Pass Tilt, Card Spotlight, Campus Blueprint, Prize Calculator, CLI Shell)
     this.toolsSuite = new InteractiveToolsSuite(this);
 
-    // 8. Navigation & Modal Listeners
+    // 9. Navigation & Modal Listeners
     this.setupNavigation();
     this.setupScheduleControls();
     this.setupModals();
@@ -331,7 +336,7 @@ class TeknoKrraftApp {
   }
 
   /* ------------------------------------------------------------------------
-     5. 3-DAY INTERACTIVE SCHEDULE
+     5. 3-DAY INTERACTIVE EVENT SCHEDULE
      ------------------------------------------------------------------------ */
   setupScheduleControls() {
     document.querySelectorAll('.day-tab-btn').forEach(btn => {
@@ -381,6 +386,13 @@ class TeknoKrraftApp {
       counterEl.textContent = `Displaying ${filtered.length} session${filtered.length === 1 ? '' : 's'} on Day 0${this.currentDay}`;
     }
 
+    // 1. Update 3D Case Study Flip Stack Engine for Schedule
+    if (!this.scheduleFlip) {
+      this.scheduleFlip = new ScheduleFlipStack(this, 'scheduleFlipTrack', 'scheduleFlipStage');
+    }
+    this.scheduleFlip.updateData(filtered, this.currentDay, this.currentCategory, this.searchQuery);
+
+    // 2. Update Fallback / Timeline List
     if (filtered.length === 0) {
       listEl.innerHTML = `
         <div style="background:var(--bg-surface);border:1px solid var(--border-hairline);border-radius:var(--radius-sm);padding:40px 20px;text-align:center;">
@@ -449,41 +461,10 @@ class TeknoKrraftApp {
   }
 
   /* ------------------------------------------------------------------------
-     6. SPEAKERS DIRECTORY
+     6. KEYNOTE SPEAKERS & MENTORS (3D SPATIAL ORBIT STAGE)
      ------------------------------------------------------------------------ */
   renderSpeakers() {
-    const grid = document.getElementById('speakersGrid');
-    if (!grid) return;
-
-    grid.innerHTML = SPEAKERS_DATA.map(sp => `
-      <div class="speaker-card" data-speaker-id="${sp.id}">
-        <div class="speaker-card-header">
-          <img src="${sp.avatar}" alt="${sp.name}" class="speaker-img" loading="lazy" />
-          <div class="speaker-headings">
-            <h4 class="speaker-name">${sp.name}</h4>
-            <span class="speaker-role">${sp.role}</span>
-            <span class="speaker-org">${sp.org}</span>
-          </div>
-        </div>
-        <div style="display:flex;gap:6px;">
-          <span class="tag tag-blue">${sp.track}</span>
-          <span class="tag tag-yellow">${sp.badge}</span>
-        </div>
-        <p class="speaker-bio-preview">${sp.bio}</p>
-        <div class="speaker-card-footer">
-          <span>View Dossier & Sessions</span>
-          <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-        </div>
-      </div>
-    `).join('');
-
-    grid.querySelectorAll('.speaker-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const id = card.getAttribute('data-speaker-id');
-        const sp = SPEAKERS_DATA.find(s => s.id === id);
-        if (sp) this.openSpeakerModal(sp);
-      });
-    });
+    this.speakersScroller = new Speakers3DScroller(this, 'speakersGrid');
   }
 
   openSpeakerModal(sp) {
@@ -694,6 +675,14 @@ class TeknoKrraftApp {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  new TeknoKrraftApp();
-});
+function bootTeknoKrraft() {
+  if (!window._app) {
+    window._app = new TeknoKrraftApp();
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootTeknoKrraft);
+} else {
+  bootTeknoKrraft();
+}
